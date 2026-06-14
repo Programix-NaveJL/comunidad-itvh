@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +11,7 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ── TEMA CLARO (default) ── */
-  :root,
-  [data-theme="light"] {
+  :root {
     --bg: #FAF8F2;
     --bg-secondary: #F1EDE2;
     --bg-tertiary: #E9E2D2;
@@ -30,7 +28,6 @@
     --radius: 8px;
     --radius-lg: 12px;
     --sidebar-w: 260px;
-    --topbar-logo-filter: none;
     --prohibited-bg: #FCF1ED;
     --prohibited-border: #D97757;
     --prohibited-text: #8A3B22;
@@ -38,46 +35,6 @@
     --allowed-border: #2E6E4E;
     --allowed-text: #1D4A33;
     --tag-bg: rgba(30,42,34,0.06);
-  }
-
-  /* ── TEMA OSCURO CÁLIDO ── */
-  [data-theme="dark"] {
-    /* Fondos: café oscuro con tonos cálidos, no negro frío */
-    --bg:           #1C1610;   /* café muy oscuro, casi negro tostado */
-    --bg-secondary: #241D12;   /* un tono arriba, mismo tinte */
-    --bg-tertiary:  #2E2518;   /* beige oscuro para bordes de sección */
-
-    /* Texto: crema y arena, no blanco puro */
-    --text-primary:   #F0E8D6;  /* crema cálida */
-    --text-secondary: #B8A98A;  /* arena media */
-    --text-muted:     #7A6B52;  /* arena oscura */
-
-    /* Bordes: olivo/café, con calidez */
-    --border:       #3D3220;
-    --border-hover: #564430;
-
-    /* Acento: verde olivo cálido (no el verde frío anterior) */
-    --accent:       #7FAF6E;   /* verde olivo claro */
-    --accent-light: #232B1A;   /* verde olivo muy oscuro para fondos */
-    --accent-dark:  #A8CC95;   /* verde olivo más claro para hover */
-
-    /* Dorado: más intenso y vivo en oscuro */
-    --gold:         #D4A043;
-    --gold-light:   #2A2010;
-
-    /* Bloques semánticos con calidez */
-    --prohibited-bg:     #261810;
-    --prohibited-border: #C47040;
-    --prohibited-text:   #E8A870;
-
-    --allowed-bg:     #182318;
-    --allowed-border: #5A9450;
-    --allowed-text:   #A8CC95;
-
-    /* Tags */
-    --tag-bg: rgba(240,232,214,0.07);
-
-    --topbar-logo-filter: brightness(0.9) sepia(0.2);
   }
 
   html { scroll-behavior: smooth; }
@@ -89,7 +46,6 @@
     color: var(--text-primary);
     background: var(--bg-tertiary);
     min-height: 100vh;
-    transition: background 0.25s, color 0.25s;
   }
 
   h1, h2, .brand-name, .module-title, .final-brand-text h2, .hero-meta, .section-num, .module-num {
@@ -109,7 +65,6 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    transition: background 0.25s, border-color 0.25s;
   }
 
   .topbar-brand {
@@ -118,6 +73,7 @@
     gap: 12px;
     text-decoration: none;
     color: var(--text-primary);
+    min-width: 0;
   }
 
   .brand-logo {
@@ -126,8 +82,6 @@
     object-fit: contain;
     display: block;
     flex-shrink: 0;
-    filter: var(--topbar-logo-filter);
-    transition: filter 0.25s;
   }
 
   .brand-divider {
@@ -137,29 +91,11 @@
     flex-shrink: 0;
   }
 
-  .brand-text { display: flex; flex-direction: column; }
-  .brand-name { font-size: 13px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.2; }
-  .brand-sub  { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 1px; }
+  .brand-text { display: flex; flex-direction: column; min-width: 0; }
+  .brand-name { font-size: 13px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.2; white-space: nowrap; }
+  .brand-sub  { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 1px; white-space: nowrap; }
 
-  .topbar-right { display: flex; align-items: center; gap: 8px; }
-
-  .theme-toggle {
-    width: 38px; height: 38px;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: none;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: background 0.15s, border-color 0.15s;
-    flex-shrink: 0;
-  }
-  .theme-toggle:hover { background: var(--bg-secondary); border-color: var(--border-hover); }
-  .theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .icon-sun  { display: none; }
-  .icon-moon { display: block; }
-  [data-theme="dark"] .icon-sun  { display: block; }
-  [data-theme="dark"] .icon-moon { display: none; }
+  .topbar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
   .btn-pdf {
     display: inline-flex;
@@ -177,12 +113,9 @@
     transition: background 0.15s, transform 0.1s;
     white-space: nowrap;
   }
-  /* En oscuro el texto del botón debe ser oscuro para contrastar con el verde claro */
-  [data-theme="dark"] .btn-pdf { color: #1C1610; }
   .btn-pdf:hover { background: var(--accent-dark); }
-  [data-theme="dark"] .btn-pdf:hover { color: #1C1610; }
   .btn-pdf:active { transform: scale(0.97); }
-  .btn-pdf svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .btn-pdf svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
   .mobile-menu-btn {
     display: none;
@@ -192,6 +125,7 @@
     padding: 6px 8px;
     cursor: pointer;
     color: var(--text-primary);
+    flex-shrink: 0;
   }
   .mobile-menu-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; display: block; }
 
@@ -256,7 +190,6 @@
     color: var(--text-muted);
   }
   .nav-item.active .nav-num { background: var(--accent); color: #fff; }
-  [data-theme="dark"] .nav-item.active .nav-num { color: #1C1610; }
 
   .sidebar-footer {
     margin-top: 1.5rem;
@@ -271,8 +204,6 @@
     object-fit: contain;
     margin-bottom: 8px;
     display: block;
-    filter: var(--topbar-logo-filter);
-    transition: filter 0.25s;
   }
   .sidebar-footer p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
   .sidebar-footer a { color: var(--accent); text-decoration: none; }
@@ -286,32 +217,19 @@
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 0;
     margin-bottom: 1.5rem;
     overflow: hidden;
-    transition: background 0.25s, border-color 0.25s;
   }
 
-  /* Franja superior — en oscuro usa el mismo dorado/café profundo */
   .hero-band {
     height: 52px;
     background-color: var(--accent-dark);
     background-image:
-      radial-gradient(circle at 10px 12px, rgba(255,255,255,0.13) 0 3px, transparent 3.5px),
-      radial-gradient(circle at 34px 30px, rgba(255,255,255,0.09) 0 2.5px, transparent 3px),
-      radial-gradient(circle at 58px 10px, rgba(255,255,255,0.10) 0 2px, transparent 2.5px),
-      radial-gradient(circle at 80px 34px, rgba(255,255,255,0.08) 0 2.5px, transparent 3px);
+      radial-gradient(circle at 10px 12px, rgba(255,255,255,0.16) 0 3px, transparent 3.5px),
+      radial-gradient(circle at 34px 30px, rgba(255,255,255,0.11) 0 2.5px, transparent 3px),
+      radial-gradient(circle at 58px 10px, rgba(255,255,255,0.13) 0 2px, transparent 2.5px),
+      radial-gradient(circle at 80px 34px, rgba(255,255,255,0.10) 0 2.5px, transparent 3px);
     background-size: 96px 48px;
-    transition: background-color 0.25s;
-  }
-  /* Oscuro cálido: la franja usa el café dorado oscuro */
-  [data-theme="dark"] .hero-band {
-    background-color: #2A1E0C;
-    background-image:
-      radial-gradient(circle at 10px 12px, rgba(212,160,67,0.18) 0 3px, transparent 3.5px),
-      radial-gradient(circle at 34px 30px, rgba(212,160,67,0.12) 0 2.5px, transparent 3px),
-      radial-gradient(circle at 58px 10px, rgba(212,160,67,0.14) 0 2px, transparent 2.5px),
-      radial-gradient(circle at 80px 34px, rgba(212,160,67,0.10) 0 2.5px, transparent 3px);
   }
 
   .hero-body {
@@ -330,8 +248,7 @@
     border: 1px solid var(--border);
     padding: 6px;
     margin-top: -38px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    transition: background 0.25s, border-color 0.25s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
   .hero h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 6px; }
@@ -361,7 +278,6 @@
     padding: 12px 16px;
     font-size: 13px; color: var(--text-secondary);
     margin-bottom: 1.5rem;
-    transition: background 0.25s, border-color 0.25s;
   }
   .info-bar strong { color: var(--text-primary); font-weight: 600; }
 
@@ -372,7 +288,7 @@
     border-radius: var(--radius-lg);
     margin-bottom: 1rem;
     overflow: hidden;
-    transition: border-color 0.15s, background 0.25s;
+    transition: border-color 0.15s;
   }
   .module-card:hover { border-color: var(--border-hover); }
   .module-card.open  { border-color: var(--accent); }
@@ -401,11 +317,10 @@
     transition: background 0.15s, color 0.15s;
   }
   .module-card.open .module-num { background: var(--accent); color: #fff; }
-  [data-theme="dark"] .module-card.open .module-num { color: #1C1610; }
 
   .module-title-wrap { flex: 1; min-width: 0; }
   .module-title    { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .module-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+  .module-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   .module-count {
     font-size: 11px; color: var(--text-muted);
@@ -447,7 +362,7 @@
     font-size: 11px; font-weight: 600;
     color: var(--accent); width: 52px; flex-shrink: 0;
   }
-  .section-title { font-size: 13px; font-weight: 500; flex: 1; }
+  .section-title { font-size: 13px; font-weight: 500; flex: 1; text-align: left; }
   .s-chevron {
     width: 14px; height: 14px;
     fill: none; stroke: var(--text-muted);
@@ -461,7 +376,6 @@
     padding: 1rem 1.5rem 1.2rem calc(1.5rem + 62px);
     font-size: 14px; color: var(--text-secondary);
     line-height: 1.75; background: var(--bg);
-    transition: background 0.25s;
   }
   .section-body.visible { display: block; }
   .section-body p { margin-bottom: 0.75rem; }
@@ -477,12 +391,10 @@
 
   /* BLOQUES SEMÁNTICOS */
   .prohibited-block, .allowed-block {
-    background: var(--bg-secondary);
     border-left: 3px solid;
     border-radius: 0 var(--radius) var(--radius) 0;
     padding: 10px 14px; margin: 0.75rem 0;
     font-size: 13px;
-    transition: background 0.25s, border-color 0.25s, color 0.25s;
   }
   .prohibited-block { border-color: var(--prohibited-border); background: var(--prohibited-bg); }
   .allowed-block    { border-color: var(--allowed-border);    background: var(--allowed-bg); }
@@ -507,10 +419,8 @@
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 0;
     margin-top: 1rem;
     overflow: hidden;
-    transition: background 0.25s, border-color 0.25s;
   }
 
   .final-brand {
@@ -520,12 +430,8 @@
     padding: 1.25rem 2rem;
     border-bottom: 1px solid var(--border);
     background: var(--bg-secondary);
-    transition: background 0.25s, border-color 0.25s;
   }
-  .final-brand-logo {
-    height: 48px; width: auto;
-    object-fit: contain; flex-shrink: 0;
-  }
+  .final-brand-logo { height: 48px; width: auto; object-fit: contain; flex-shrink: 0; }
   .final-brand-text h2 { font-size: 16px; font-weight: 600; }
   .final-brand-text p  { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
@@ -538,7 +444,6 @@
     border-radius: var(--radius);
     padding: 12px 14px;
     border: 1px solid var(--border);
-    transition: background 0.25s, border-color 0.25s;
   }
   .contact-item .c-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 4px; }
   .contact-item .c-val   { font-size: 13px; color: var(--text-primary); word-break: break-word; }
@@ -553,13 +458,8 @@
     flex-wrap: wrap; gap: 10px;
     font-size: 12px; color: var(--text-muted);
   }
-  .copyright-logo {
-    height: 22px; width: auto;
-    object-fit: contain; opacity: 0.55;
-    transition: opacity 0.15s, filter 0.25s;
-    filter: var(--topbar-logo-filter);
-  }
-  .copyright-logo:hover { opacity: 0.9; }
+  .copyright-logo { height: 22px; width: auto; object-fit: contain; opacity: 0.6; transition: opacity 0.15s; }
+  .copyright-logo:hover { opacity: 1; }
 
   /* SCROLL TO TOP */
   .scroll-top {
@@ -571,33 +471,87 @@
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s, background 0.25s;
+    transition: opacity 0.2s, transform 0.2s;
     z-index: 50;
   }
   .scroll-top.show { opacity: 1; pointer-events: auto; }
   .scroll-top:hover { transform: translateY(-2px); }
-  .scroll-top svg { width: 18px; height: 18px; fill: none; stroke: #1C1610; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-  [data-theme="light"] .scroll-top svg { stroke: #fff; }
+  .scroll-top svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* ── RESPONSIVE ── */
+  /* ── RESPONSIVE MOBILE ── */
   @media (max-width: 768px) {
+    /* Topbar */
+    .topbar { padding: 0 1rem; height: 56px; }
+    .brand-sub { display: none; }
+    .brand-logo { height: 28px; }
+    .btn-pdf span { display: none; }
+    .btn-pdf { padding: 8px 10px; }
     .mobile-menu-btn { display: flex; }
-    .layout { flex-direction: column; padding: 1rem; gap: 1rem; }
+
+    /* Layout */
+    .layout { flex-direction: column; padding: 0.75rem; gap: 0.75rem; }
+
+    /* Sidebar en mobile: colapsable */
     .sidebar {
-      position: static; width: 100%; max-height: none;
+      position: static;
+      width: 100%;
+      max-height: none;
+      overflow: visible;
       display: none;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
     }
     .sidebar.open { display: block; }
-    .hero-body { flex-direction: column; padding: 1.25rem; gap: 1rem; }
-    .hero h1 { font-size: 18px; }
+
+    /* Hero */
+    .hero-band { height: 40px; }
+    .hero-body { flex-direction: column; padding: 1rem; gap: 0.75rem; }
+    .hero-logo {
+      width: 52px; height: 52px;
+      margin-top: -28px;
+      /* En mobile queda bien centrado */
+      align-self: flex-start;
+    }
+    .hero h1 { font-size: 17px; }
+    .hero p  { font-size: 13px; }
+    .hero-meta { gap: 8px; font-size: 11px; }
+    .meta-divider { display: none; }
+
+    /* Info bar */
+    .info-bar { font-size: 12px; padding: 10px 12px; }
+
+    /* Módulos */
+    .module-header { padding: 1rem; gap: 10px; }
+    .module-num { width: 30px; height: 30px; font-size: 11px; }
+    .module-title { font-size: 13px; }
+    .module-subtitle { display: none; }
+    .module-count { display: none; }
+
+    /* Sections */
+    .section-header { padding: 11px 1rem; }
+    .section-num { width: 42px; font-size: 10px; }
+    .section-title { font-size: 12.5px; }
+    .section-body {
+      padding: 0.85rem 1rem 1rem 1rem;
+      font-size: 13px;
+    }
+    .section-body ul li { font-size: 13px; }
+
+    /* Final card */
+    .final-brand { padding: 1rem; flex-wrap: wrap; }
+    .final-brand-logo { height: 36px; }
+    .final-body { padding: 1rem; }
     .contact-grid { grid-template-columns: 1fr; }
-    .topbar { padding: 0 1rem; }
-    .brand-sub { display: none; }
-    .btn-pdf span { display: none; }
-    .final-brand { padding: 1rem 1.25rem; }
-    .final-body { padding: 1.25rem; }
+
+    /* Scroll top más pequeño en mobile */
+    .scroll-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; }
+  }
+
+  @media (max-width: 380px) {
+    .brand-name { font-size: 12px; }
+    .hero h1 { font-size: 15px; }
   }
 </style>
 </head>
@@ -613,30 +567,11 @@
       <span class="brand-sub">Términos y Condiciones de Uso</span>
     </div>
   </a>
-
   <div class="topbar-right">
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
-      <svg class="icon-moon" viewBox="0 0 24 24">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="5"/>
-        <line x1="12" y1="1" x2="12" y2="3"/>
-        <line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1" y1="12" x2="3" y2="12"/>
-        <line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-      </svg>
-    </button>
-
     <a href="#" class="btn-pdf" onclick="downloadPDF(event)">
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       <span>Descargar PDF</span>
     </a>
-
     <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Menú">
       <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
@@ -648,7 +583,7 @@
   <!-- ══ SIDEBAR ══ -->
   <aside class="sidebar" id="sidebar">
     <span class="sidebar-label">Módulos</span>
-    <nav class="sidebar-nav" id="sidebar-nav">
+    <nav class="sidebar-nav">
       <a class="nav-item active" href="#" onclick="scrollToModule(0,event)"><span class="nav-num">1</span> Registro e Inicio de Sesión</a>
       <a class="nav-item" href="#" onclick="scrollToModule(1,event)"><span class="nav-num">2</span> Perfil del Usuario</a>
       <a class="nav-item" href="#" onclick="scrollToModule(2,event)"><span class="nav-num">3</span> Comunidad Tecnológica</a>
@@ -672,7 +607,6 @@
     <!-- HERO -->
     <div class="hero">
       <div class="hero-band" aria-hidden="true"></div>
-
       <div class="hero-body">
         <img src="imagenes/logo_comunidad_itvh.png" alt="Comunidad ITVH" class="hero-logo">
         <div>
@@ -887,7 +821,7 @@
               <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
             <div class="section-body">
-              <p>La app Comunidad ITVH podrá otorgar distintivos especiales a determinados usuarios. Entre ellos podrán encontrarse:</p>
+              <p>La app Comunidad ITVH podrá otorgar distintivos especiales a determinados usuarios:</p>
               <div class="tag-list" style="margin-top:0.5rem;">
                 <span class="tag" style="background:#e0f2fe;color:#075985;">⚡ Emprendedor Verificado</span>
                 <span class="tag" style="background:#f0fdf4;color:#14532d;">🤝 Colaborador</span>
@@ -905,7 +839,7 @@
             <div class="section-body">
               <p>El perfil podrá ser visible para otros miembros conforme a la configuración de privacidad disponible en la Plataforma.</p>
               <p>El usuario podrá actualizar su perfil a través de las herramientas disponibles. Programix NaveJL podrá establecer límites razonables respecto de la frecuencia de modificaciones.</p>
-              <p>Cada usuario es el <strong>único responsable</strong> del contenido que incorpore a su perfil. La existencia de un perfil en la app no implica aprobación o respaldo por parte de Programix NaveJL.</p>
+              <p>Cada usuario es el <strong>único responsable</strong> del contenido que incorpore a su perfil.</p>
             </div>
           </div>
         </div>
@@ -949,7 +883,6 @@
                   <span class="tag">Proyectos estudiantiles</span>
                 </div>
               </div>
-              <p style="margin-top:0.75rem;">Los usuarios podrán interactuar mediante reacciones, comentarios y otras herramientas futuras. Toda interacción deberá realizarse con respeto hacia los demás miembros.</p>
             </div>
           </div>
           <div class="section-item">
@@ -988,8 +921,7 @@
             </button>
             <div class="section-body">
               <p>Programix NaveJL podrá revisar, restringir, ocultar o eliminar publicaciones que presuntamente incumplan las políticas, incluso de forma preventiva.</p>
-              <p>Los usuarios podrán reportar publicaciones. Al publicar contenido, el usuario concede a Programix NaveJL una <strong>licencia no exclusiva y gratuita</strong> para almacenar, reproducir y mostrar dicho contenido exclusivamente dentro de la Plataforma.</p>
-              <p>El incumplimiento podrá dar lugar a eliminación del contenido, restricción de funcionalidades, suspensión temporal o cancelación definitiva de la cuenta.</p>
+              <p>Al publicar contenido, el usuario concede a Programix NaveJL una <strong>licencia no exclusiva y gratuita</strong> para almacenar, reproducir y mostrar dicho contenido exclusivamente dentro de la Plataforma.</p>
             </div>
           </div>
         </div>
@@ -1014,7 +946,7 @@
             </button>
             <div class="section-body">
               <p>El Marketplace facilita la compra, venta, promoción e intercambio de productos y servicios, fomentando el emprendimiento estudiantil dentro del Instituto Tecnológico de Villahermosa.</p>
-              <p>Todos los usuarios podrán explorar publicaciones y contactar vendedores. Sin embargo, únicamente podrán <strong>publicar</strong> aquellos autorizados como <strong>Emprendedores Verificados</strong>.</p>
+              <p>Todos los usuarios podrán explorar publicaciones y contactar vendedores. Únicamente podrán <strong>publicar</strong> aquellos autorizados como <strong>Emprendedores Verificados</strong>.</p>
             </div>
           </div>
           <div class="section-item">
@@ -1061,7 +993,7 @@
             </button>
             <div class="section-body">
               <p>El vendedor es el único responsable de la autenticidad de los productos, la veracidad de la información, el cumplimiento de los acuerdos y la legislación aplicable.</p>
-              <p>La app Comunidad ITVH actúa exclusivamente como <strong>plataforma tecnológica intermediaria</strong>. Programix NaveJL no participa en la fabricación, distribución ni entrega de los productos, y no garantiza el cumplimiento de las obligaciones entre las partes.</p>
+              <p>La app Comunidad ITVH actúa exclusivamente como <strong>plataforma tecnológica intermediaria</strong>. Programix NaveJL no participa en la fabricación, distribución ni entrega de los productos.</p>
             </div>
           </div>
         </div>
@@ -1104,7 +1036,7 @@
               <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
             <div class="section-body">
-              <p>Programix NaveJL no monitorea de forma permanente las conversaciones privadas. No obstante, ante un reporte fundamentado, obligación legal o indicios razonables de actividades ilícitas, podrá adoptar las medidas necesarias para investigar los hechos, respetando la normativa de protección de datos personales.</p>
+              <p>Programix NaveJL no monitorea de forma permanente las conversaciones privadas. No obstante, ante un reporte fundamentado, obligación legal o indicios razonables de actividades ilícitas, podrá adoptar las medidas necesarias para investigar los hechos.</p>
             </div>
           </div>
           <div class="section-item">
@@ -1177,7 +1109,7 @@
             </button>
             <div class="section-body">
               <p>Programix NaveJL procurará mantener actualizada la información mostrada, sin embargo no garantiza que todos los datos geográficos permanezcan actualizados ante posibles modificaciones de la institución educativa.</p>
-              <p>UbicaTecNM podrá integrarse con Comunidad Tecnológica (para asociar publicaciones con lugares del campus), Marketplace (para sugerir puntos de encuentro) y Jaguar Chat (para compartir ubicaciones en conversaciones).</p>
+              <p>UbicaTecNM podrá integrarse con Comunidad Tecnológica, Marketplace y Jaguar Chat para compartir ubicaciones dentro de la plataforma.</p>
             </div>
           </div>
           <div class="section-item">
@@ -1195,7 +1127,6 @@
                   <li>Promover el acoso o seguimiento indebido de otros usuarios</li>
                 </ul>
               </div>
-              <p style="margin-top:0.75rem;">Programix NaveJL no garantiza la disponibilidad permanente ni la precisión absoluta de la información geográfica. El uso indebido podrá dar lugar a restricciones de acceso, suspensión o cancelación de la cuenta.</p>
             </div>
           </div>
         </div>
@@ -1240,7 +1171,7 @@
             </button>
             <div class="section-body">
               <p>Los usuarios conservarán la titularidad de sus derechos sobre el contenido que generen. Al publicar, conceden a Programix NaveJL una <strong>licencia no exclusiva, gratuita y limitada</strong> para almacenar, reproducir y mostrar dicho contenido dentro de la Plataforma.</p>
-              <p>Los usuarios son responsables de asegurarse que el contenido de terceros que publiquen cuente con las autorizaciones necesarias. Todos los derechos no expresamente concedidos permanecen reservados.</p>
+              <p>Todos los derechos no expresamente concedidos permanecen reservados.</p>
             </div>
           </div>
         </div>
@@ -1265,7 +1196,7 @@
             </button>
             <div class="section-body">
               <p>La app Comunidad ITVH es una plataforma tecnológica que facilita la interacción entre estudiantes. Programix NaveJL no participa como parte en las relaciones personales, académicas o comerciales que los usuarios establezcan entre sí.</p>
-              <p>La mayor parte del contenido es generado por los propios usuarios. Programix NaveJL no garantiza la veracidad, exactitud o legalidad del contenido generado.</p>
+              <p>Programix NaveJL no garantiza la veracidad, exactitud o legalidad del contenido generado por los usuarios.</p>
             </div>
           </div>
           <div class="section-item">
@@ -1274,7 +1205,7 @@
               <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
             <div class="section-body">
-              <p>Programix NaveJL realizará esfuerzos razonables para mantener la app disponible. No obstante, la Plataforma podrá experimentar interrupciones derivadas de mantenimiento programado, actualizaciones de software, fallas en servicios de terceros, problemas de conectividad, casos fortuitos o incidentes de seguridad.</p>
+              <p>Programix NaveJL realizará esfuerzos razonables para mantener la app disponible. No obstante, la Plataforma podrá experimentar interrupciones derivadas de mantenimiento programado, actualizaciones de software, fallas en servicios de terceros, problemas de conectividad o incidentes de seguridad.</p>
             </div>
           </div>
           <div class="section-item">
@@ -1283,9 +1214,8 @@
               <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
             <div class="section-body">
-              <p>Programix NaveJL actúa como intermediario tecnológico en el Marketplace y no será responsable por la calidad de productos, cumplimiento de acuerdos, retrasos en entregas, defectos o controversias comerciales entre usuarios.</p>
+              <p>Programix NaveJL actúa como intermediario tecnológico en el Marketplace y no será responsable por la calidad de productos, cumplimiento de acuerdos, retrasos en entregas o controversias comerciales entre usuarios.</p>
               <p>No será responsable por el contenido de conversaciones privadas en Jaguar Chat ni por las decisiones tomadas por los usuarios.</p>
-              <p>La información geográfica de UbicaTecNM tiene carácter informativo. Programix NaveJL no garantiza la precisión absoluta ni la disponibilidad permanente del servicio.</p>
             </div>
           </div>
           <div class="section-item">
@@ -1295,7 +1225,6 @@
             </button>
             <div class="section-body">
               <p>Programix NaveJL no será responsable por incumplimientos derivados de desastres naturales, interrupciones generalizadas de Internet, ataques cibernéticos de gran escala, actos de autoridad u otros supuestos de fuerza mayor o caso fortuito.</p>
-              <p>En la máxima medida permitida por la legislación, la responsabilidad de Programix NaveJL se limitará a la prestación de los servicios tecnológicos que integran la app Comunidad ITVH.</p>
             </div>
           </div>
         </div>
@@ -1346,7 +1275,7 @@
             </button>
             <div class="section-body">
               <p>Los usuarios podrán reportar publicaciones, perfiles, productos o conversaciones contrarios a los Términos y Condiciones. Todos los reportes serán analizados de forma objetiva y confidencial.</p>
-              <p>Programix NaveJL promueve la colaboración responsable para fortalecer la seguridad. Cualquier persona que identifique una posible vulnerabilidad podrá comunicarla mediante los canales oficiales.</p>
+              <p>Programix NaveJL promueve la colaboración responsable para fortalecer la seguridad mediante los canales oficiales.</p>
             </div>
           </div>
           <div class="section-item">
@@ -1355,7 +1284,7 @@
               <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
             <div class="section-body">
-              <p>Únicamente se considerarán oficiales las comunicaciones emitidas por Programix NaveJL a través de los medios expresamente reconocidos. Se recomienda a los usuarios verificar siempre la autenticidad de cualquier comunicación antes de proporcionar información personal o realizar pagos.</p>
+              <p>Únicamente se considerarán oficiales las comunicaciones emitidas por Programix NaveJL a través de los medios expresamente reconocidos. Se recomienda verificar siempre la autenticidad de cualquier comunicación antes de proporcionar información personal o realizar pagos.</p>
             </div>
           </div>
         </div>
@@ -1372,10 +1301,8 @@
           <p>Información oficial del documento — Comunidad ITVH</p>
         </div>
       </div>
-
       <div class="final-body">
-        <p>Los presentes Términos y Condiciones de Uso constituyen el marco general que regula el acceso y utilización de la app Comunidad ITVH. La utilización continua de la app después de cualquier actualización implica la aceptación de las modificaciones correspondientes, salvo que la legislación aplicable disponga lo contrario.</p>
-
+        <p>Los presentes Términos y Condiciones de Uso constituyen el marco general que regula el acceso y utilización de la app Comunidad ITVH. La utilización continua de la app después de cualquier actualización implica la aceptación de las modificaciones correspondientes.</p>
         <div class="contact-grid">
           <div class="contact-item">
             <div class="c-label">Documento</div>
@@ -1402,9 +1329,7 @@
             <div class="c-val"><a href="mailto:alfredo.naveju.lop@gmail.com">alfredo.naveju.lop@gmail.com</a></div>
           </div>
         </div>
-
         <div class="final-divider"></div>
-
         <div class="copyright">
           <span>© 2026 Programix NaveJL. Todos los derechos reservados.</span>
           <img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" class="copyright-logo">
@@ -1423,43 +1348,19 @@
 <script>
   const modules  = document.querySelectorAll('.module-card');
   const navItems = document.querySelectorAll('.nav-item');
-  const html     = document.documentElement;
 
-  /* ── TEMA ── */
-  (function() {
-    const saved = localStorage.getItem('itvh-theme');
-    if (saved) {
-      html.setAttribute('data-theme', saved);
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      html.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-    }
-  })();
-
-  function toggleTheme() {
-    const current = html.getAttribute('data-theme');
-    const next    = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('itvh-theme', next);
-  }
-
-  /* ── MÓDULOS ── */
-  function toggleModule(idx) {
-    modules[idx].classList.toggle('open');
-  }
+  function toggleModule(idx) { modules[idx].classList.toggle('open'); }
 
   function toggleSection(btn) {
-    const body  = btn.nextElementSibling;
     const isOpen = btn.classList.contains('s-open');
     btn.classList.toggle('s-open', !isOpen);
-    body.classList.toggle('visible', !isOpen);
+    btn.nextElementSibling.classList.toggle('visible', !isOpen);
   }
 
   function scrollToModule(idx, e) {
     e.preventDefault();
-    const card = modules[idx];
-    if (!card.classList.contains('open')) card.classList.add('open');
-    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    if (!modules[idx].classList.contains('open')) modules[idx].classList.add('open');
+    setTimeout(() => modules[idx].scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     navItems.forEach(n => n.classList.remove('active'));
     navItems[idx].classList.add('active');
     document.getElementById('sidebar').classList.remove('open');
@@ -1474,7 +1375,6 @@
     window.open('docs/Comunidad ITVH - Terminos y condiciones de uso.pdf', '_blank');
   }
 
-  /* ── SCROLL: sidebar activo + botón subir ── */
   window.addEventListener('scroll', () => {
     document.getElementById('scroll-top').classList.toggle('show', window.scrollY > 400);
     let current = 0;
@@ -1483,7 +1383,6 @@
     navItems[current].classList.add('active');
   });
 
-  /* Abre el primer módulo por defecto */
   modules[0].classList.add('open');
 </script>
 </body>
