@@ -1,6 +1,18 @@
-# <img src="imagenes/logo_comunidad_itvh.png" alt="Comunidad ITVH" height="28"> Comunidad ITVH
+<div align="center">
 
-> Documentación legal y recursos oficiales de la aplicación **Comunidad ITVH**, desarrollada por **Programix NaveJL** para la comunidad estudiantil del Instituto Tecnológico de Villahermosa.
+<img src="imagenes/logo_comunidad_itvh.png" alt="Comunidad ITVH" height="90">
+
+<h1>Comunidad ITVH</h1>
+
+<p>Documentación legal y recursos oficiales de la aplicación <strong>Comunidad ITVH</strong>,<br>
+desarrollada por <strong>Programix NaveJL</strong> para la comunidad estudiantil<br>
+del Instituto Tecnológico de Villahermosa.</p>
+
+![Version](https://img.shields.io/badge/Versión-1.0-2E6E4E?style=flat-square)
+![Módulos](https://img.shields.io/badge/Módulos-9-2E6E4E?style=flat-square)
+![Año](https://img.shields.io/badge/©_2026-Programix_NaveJL-B5832A?style=flat-square)
+
+</div>
 
 ---
 
@@ -26,7 +38,12 @@
 
 ---
 
-<img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" height="32">
+<div align="center">
 
-© 2026 Programix NaveJL · Todos los derechos reservados  
-📧 alfredo.naveju.lop@gmail.com · 🌐 [programix-navejl.github.io](https://programix-navejl.github.io/programix-navejl)
+<img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" height="40"><br><br>
+
+© 2026 Programix NaveJL · Todos los derechos reservados<br>
+📧 alfredo.naveju.lop@gmail.com &nbsp;·&nbsp;
+🌐 <a href="https://programix-navejl.github.io/programix-navejl">programix-navejl.github.io</a>
+
+</div>
