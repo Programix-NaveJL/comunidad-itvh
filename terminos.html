@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Términos y Condiciones — Comunidad ITVH</title>
+<link rel="icon" type="image/png" href="imagenes/logo_comunidad_itvh.png">
+<link rel="apple-touch-icon" href="imagenes/logo_comunidad_itvh.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── TEMA CLARO (default) ── */
+  :root,
+  [data-theme="light"] {
+    --bg: #FAF8F2;
+    --bg-secondary: #F1EDE2;
+    --bg-tertiary: #E9E2D2;
+    --text-primary: #1E2A22;
+    --text-secondary: #5B6B5F;
+    --text-muted: #97A294;
+    --border: #DED7C4;
+    --border-hover: #C9C0A8;
+    --accent: #2E6E4E;
+    --accent-light: #E4EFE6;
+    --accent-dark: #1D4A33;
+    --gold: #B5832A;
+    --gold-light: #F4E7CE;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --sidebar-w: 260px;
+    --topbar-logo-filter: none;
+    --prohibited-bg: #FCF1ED;
+    --prohibited-border: #D97757;
+    --prohibited-text: #8A3B22;
+    --allowed-bg: #EBF3EC;
+    --allowed-border: #2E6E4E;
+    --allowed-text: #1D4A33;
+    --tag-bg: rgba(30,42,34,0.06);
+  }
+
+  /* ── TEMA OSCURO CÁLIDO ── */
+  [data-theme="dark"] {
+    /* Fondos: café oscuro con tonos cálidos, no negro frío */
+    --bg:           #1C1610;   /* café muy oscuro, casi negro tostado */
+    --bg-secondary: #241D12;   /* un tono arriba, mismo tinte */
+    --bg-tertiary:  #2E2518;   /* beige oscuro para bordes de sección */
+
+    /* Texto: crema y arena, no blanco puro */
+    --text-primary:   #F0E8D6;  /* crema cálida */
+    --text-secondary: #B8A98A;  /* arena media */
+    --text-muted:     #7A6B52;  /* arena oscura */
+
+    /* Bordes: olivo/café, con calidez */
+    --border:       #3D3220;
+    --border-hover: #564430;
+
+    /* Acento: verde olivo cálido (no el verde frío anterior) */
+    --accent:       #7FAF6E;   /* verde olivo claro */
+    --accent-light: #232B1A;   /* verde olivo muy oscuro para fondos */
+    --accent-dark:  #A8CC95;   /* verde olivo más claro para hover */
+
+    /* Dorado: más intenso y vivo en oscuro */
+    --gold:         #D4A043;
+    --gold-light:   #2A2010;
+
+    /* Bloques semánticos con calidez */
+    --prohibited-bg:     #261810;
+    --prohibited-border: #C47040;
+    --prohibited-text:   #E8A870;
+
+    --allowed-bg:     #182318;
+    --allowed-border: #5A9450;
+    --allowed-text:   #A8CC95;
+
+    /* Tags */
+    --tag-bg: rgba(240,232,214,0.07);
+
+    --topbar-logo-filter: brightness(0.9) sepia(0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+    min-height: 100vh;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  h1, h2, .brand-name, .module-title, .final-brand-text h2, .hero-meta, .section-num, .module-num {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+
+  .brand-logo {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+    filter: var(--topbar-logo-filter);
+    transition: filter 0.25s;
+  }
+
+  .brand-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .brand-text { display: flex; flex-direction: column; }
+  .brand-name { font-size: 13px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.2; }
+  .brand-sub  { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 1px; }
+
+  .topbar-right { display: flex; align-items: center; gap: 8px; }
+
+  .theme-toggle {
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: background 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover { background: var(--bg-secondary); border-color: var(--border-hover); }
+  .theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-sun  { display: none; }
+  .icon-moon { display: block; }
+  [data-theme="dark"] .icon-sun  { display: block; }
+  [data-theme="dark"] .icon-moon { display: none; }
+
+  .btn-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    white-space: nowrap;
+  }
+  /* En oscuro el texto del botón debe ser oscuro para contrastar con el verde claro */
+  [data-theme="dark"] .btn-pdf { color: #1C1610; }
+  .btn-pdf:hover { background: var(--accent-dark); }
+  [data-theme="dark"] .btn-pdf:hover { color: #1C1610; }
+  .btn-pdf:active { transform: scale(0.97); }
+  .btn-pdf svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 6px 8px;
+    cursor: pointer;
+    color: var(--text-primary);
+  }
+  .mobile-menu-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; display: block; }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: 84px;
+    max-height: calc(100vh - 104px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0 4px 8px;
+    display: block;
+  }
+  .sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 400;
+    transition: background 0.12s, color 0.12s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+  .nav-item:hover { background: var(--bg-secondary); color: var(--text-primary); }
+  .nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 500; }
+  .nav-item .nav-num {
+    width: 22px; height: 22px;
+    border-radius: 5px;
+    background: var(--bg-tertiary);
+    font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+  }
+  .nav-item.active .nav-num { background: var(--accent); color: #fff; }
+  [data-theme="dark"] .nav-item.active .nav-num { color: #1C1610; }
+
+  .sidebar-footer {
+    margin-top: 1.5rem;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .sidebar-footer-logo {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 8px;
+    display: block;
+    filter: var(--topbar-logo-filter);
+    transition: filter 0.25s;
+  }
+  .sidebar-footer p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+  .sidebar-footer a { color: var(--accent); text-decoration: none; }
+  .sidebar-footer a:hover { text-decoration: underline; }
+
+  /* ── MAIN ── */
+  .main { flex: 1; min-width: 0; }
+
+  /* HERO */
+  .hero {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  /* Franja superior — en oscuro usa el mismo dorado/café profundo */
+  .hero-band {
+    height: 52px;
+    background-color: var(--accent-dark);
+    background-image:
+      radial-gradient(circle at 10px 12px, rgba(255,255,255,0.13) 0 3px, transparent 3.5px),
+      radial-gradient(circle at 34px 30px, rgba(255,255,255,0.09) 0 2.5px, transparent 3px),
+      radial-gradient(circle at 58px 10px, rgba(255,255,255,0.10) 0 2px, transparent 2.5px),
+      radial-gradient(circle at 80px 34px, rgba(255,255,255,0.08) 0 2.5px, transparent 3px);
+    background-size: 96px 48px;
+    transition: background-color 0.25s;
+  }
+  /* Oscuro cálido: la franja usa el café dorado oscuro */
+  [data-theme="dark"] .hero-band {
+    background-color: #2A1E0C;
+    background-image:
+      radial-gradient(circle at 10px 12px, rgba(212,160,67,0.18) 0 3px, transparent 3.5px),
+      radial-gradient(circle at 34px 30px, rgba(212,160,67,0.12) 0 2.5px, transparent 3px),
+      radial-gradient(circle at 58px 10px, rgba(212,160,67,0.14) 0 2px, transparent 2.5px),
+      radial-gradient(circle at 80px 34px, rgba(212,160,67,0.10) 0 2.5px, transparent 3px);
+  }
+
+  .hero-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .hero-logo {
+    width: 64px; height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 6px;
+    margin-top: -38px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .hero h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 6px; }
+  .hero p  { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+  .hero-meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .meta-tag { display: inline-flex; align-items: baseline; gap: 5px; }
+  .meta-tag .meta-label {
+    font-size: 9.5px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+  .meta-tag.version { color: var(--gold); font-weight: 600; }
+  .meta-divider { width: 1px; height: 13px; background: var(--border); }
+
+  /* NOTA DE VIGENCIA */
+  .info-bar {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 13px; color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .info-bar strong { color: var(--text-primary); font-weight: 600; }
+
+  /* MODULE CARD */
+  .module-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: border-color 0.15s, background 0.25s;
+  }
+  .module-card:hover { border-color: var(--border-hover); }
+  .module-card.open  { border-color: var(--accent); }
+
+  .module-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer; user-select: none;
+    background: none; border: none;
+    width: 100%; text-align: left;
+    color: var(--text-primary);
+    transition: background 0.1s;
+  }
+  .module-header:hover { background: var(--bg-secondary); }
+  .module-card.open .module-header { background: var(--bg-secondary); }
+
+  .module-num {
+    width: 36px; height: 36px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 600;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+  .module-card.open .module-num { background: var(--accent); color: #fff; }
+  [data-theme="dark"] .module-card.open .module-num { color: #1C1610; }
+
+  .module-title-wrap { flex: 1; min-width: 0; }
+  .module-title    { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .module-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+
+  .module-count {
+    font-size: 11px; color: var(--text-muted);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: 20px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  .chevron {
+    width: 18px; height: 18px; flex-shrink: 0;
+    fill: none; stroke: var(--text-muted);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    transition: transform 0.2s;
+  }
+  .module-card.open .chevron { transform: rotate(180deg); }
+
+  .module-body { display: none; border-top: 1px solid var(--border); }
+  .module-card.open .module-body { display: block; }
+
+  /* SECTIONS */
+  .section-item { border-bottom: 1px solid var(--border); overflow: hidden; }
+  .section-item:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 1.5rem;
+    cursor: pointer; user-select: none;
+    background: none; border: none;
+    width: 100%; text-align: left;
+    color: var(--text-primary);
+    transition: background 0.1s;
+  }
+  .section-header:hover { background: var(--bg-secondary); }
+  .section-header.s-open { background: var(--bg-tertiary); }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    color: var(--accent); width: 52px; flex-shrink: 0;
+  }
+  .section-title { font-size: 13px; font-weight: 500; flex: 1; }
+  .s-chevron {
+    width: 14px; height: 14px;
+    fill: none; stroke: var(--text-muted);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    transition: transform 0.18s; flex-shrink: 0;
+  }
+  .section-header.s-open .s-chevron { transform: rotate(90deg); }
+
+  .section-body {
+    display: none;
+    padding: 1rem 1.5rem 1.2rem calc(1.5rem + 62px);
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.75; background: var(--bg);
+    transition: background 0.25s;
+  }
+  .section-body.visible { display: block; }
+  .section-body p { margin-bottom: 0.75rem; }
+  .section-body p:last-child { margin-bottom: 0; }
+  .section-body ul { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 0.5rem 0; }
+  .section-body ul li { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; }
+  .section-body ul li::before {
+    content: ''; width: 5px; height: 5px;
+    border-radius: 50%; background: var(--accent);
+    flex-shrink: 0; margin-top: 9px;
+  }
+  .section-body strong { color: var(--text-primary); font-weight: 600; }
+
+  /* BLOQUES SEMÁNTICOS */
+  .prohibited-block, .allowed-block {
+    background: var(--bg-secondary);
+    border-left: 3px solid;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 10px 14px; margin: 0.75rem 0;
+    font-size: 13px;
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+  }
+  .prohibited-block { border-color: var(--prohibited-border); background: var(--prohibited-bg); }
+  .allowed-block    { border-color: var(--allowed-border);    background: var(--allowed-bg); }
+  .p-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .prohibited-block .p-label { color: var(--prohibited-text); }
+  .allowed-block .p-label    { color: var(--allowed-text); }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .tag {
+    font-size: 12px; padding: 3px 9px;
+    border-radius: var(--radius);
+    background: var(--tag-bg);
+    color: var(--text-secondary);
+  }
+
+  /* FINAL CARD */
+  .final-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    margin-top: 1rem;
+    overflow: hidden;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .final-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .final-brand-logo {
+    height: 48px; width: auto;
+    object-fit: contain; flex-shrink: 0;
+  }
+  .final-brand-text h2 { font-size: 16px; font-weight: 600; }
+  .final-brand-text p  { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+  .final-body { padding: 1.5rem 2rem; }
+  .final-body > p { font-size: 13.5px; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1rem; }
+  .contact-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .contact-item .c-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 4px; }
+  .contact-item .c-val   { font-size: 13px; color: var(--text-primary); word-break: break-word; }
+  .contact-item .c-val a { color: var(--accent); text-decoration: none; }
+  .contact-item .c-val a:hover { text-decoration: underline; }
+
+  .final-divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+
+  .copyright {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; gap: 10px;
+    font-size: 12px; color: var(--text-muted);
+  }
+  .copyright-logo {
+    height: 22px; width: auto;
+    object-fit: contain; opacity: 0.55;
+    transition: opacity 0.15s, filter 0.25s;
+    filter: var(--topbar-logo-filter);
+  }
+  .copyright-logo:hover { opacity: 0.9; }
+
+  /* SCROLL TO TOP */
+  .scroll-top {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    width: 40px; height: 40px;
+    background: var(--accent);
+    border: none; border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s, background 0.25s;
+    z-index: 50;
+  }
+  .scroll-top.show { opacity: 1; pointer-events: auto; }
+  .scroll-top:hover { transform: translateY(-2px); }
+  .scroll-top svg { width: 18px; height: 18px; fill: none; stroke: #1C1610; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  [data-theme="light"] .scroll-top svg { stroke: #fff; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .mobile-menu-btn { display: flex; }
+    .layout { flex-direction: column; padding: 1rem; gap: 1rem; }
+    .sidebar {
+      position: static; width: 100%; max-height: none;
+      display: none;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1rem;
+    }
+    .sidebar.open { display: block; }
+    .hero-body { flex-direction: column; padding: 1.25rem; gap: 1rem; }
+    .hero h1 { font-size: 18px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .topbar { padding: 0 1rem; }
+    .brand-sub { display: none; }
+    .btn-pdf span { display: none; }
+    .final-brand { padding: 1rem 1.25rem; }
+    .final-body { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ TOP BAR ══ -->
+<header class="topbar">
+  <a href="#" class="topbar-brand">
+    <img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" class="brand-logo">
+    <div class="brand-divider"></div>
+    <div class="brand-text">
+      <span class="brand-name">Comunidad ITVH</span>
+      <span class="brand-sub">Términos y Condiciones de Uso</span>
+    </div>
+  </a>
+
+  <div class="topbar-right">
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+      <svg class="icon-moon" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+
+    <a href="#" class="btn-pdf" onclick="downloadPDF(event)">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Descargar PDF</span>
+    </a>
+
+    <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Menú">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar" id="sidebar">
+    <span class="sidebar-label">Módulos</span>
+    <nav class="sidebar-nav" id="sidebar-nav">
+      <a class="nav-item active" href="#" onclick="scrollToModule(0,event)"><span class="nav-num">1</span> Registro e Inicio de Sesión</a>
+      <a class="nav-item" href="#" onclick="scrollToModule(1,event)"><span class="nav-num">2</span> Perfil del Usuario</a>
+      <a class="nav-item" href="#" onclick="scrollToModule(2,event)"><span class="nav-num">3</span> Comunidad Tecnológica</a>
+      <a class="nav-item" href="#" onclick="scrollToModule(3,event)"><span class="nav-num">4</span> Marketplace</a>
+      <a class="nav-item" href="#" onclick="scrollToModule(4,event)"><span class="nav-num">5</span> Jaguar Chat</a>
+      <a class="nav-item" href="#" onclick="scrollToModule(5,event)"><span class="nav-num">6</span> UbicaTecNM</a>
+      <a class="nav-item" href="#" onclick="scrollToModule(6,event)"><span class="nav-num">7</span> Propiedad Intelectual</a>
+      <a class="nav-item" href="#" onclick="scrollToModule(7,event)"><span class="nav-num">8</span> Limitación de Responsabilidad</a>
+      <a class="nav-item" href="#" onclick="scrollToModule(8,event)"><span class="nav-num">9</span> Contacto y Medios Oficiales</a>
+    </nav>
+    <div class="sidebar-footer">
+      <img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" class="sidebar-footer-logo">
+      <p>Versión 1.0 &nbsp;·&nbsp; © 2026<br>
+      <a href="mailto:alfredo.naveju.lop@gmail.com">alfredo.naveju.lop@gmail.com</a></p>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-band" aria-hidden="true"></div>
+
+      <div class="hero-body">
+        <img src="imagenes/logo_comunidad_itvh.png" alt="Comunidad ITVH" class="hero-logo">
+        <div>
+          <h1>Términos y Condiciones de Uso</h1>
+          <p>Estos términos rigen el acceso y uso de la plataforma <strong>Comunidad ITVH</strong>, desarrollada por <strong>Programix NaveJL</strong> para la comunidad estudiantil del Instituto Tecnológico de Villahermosa.</p>
+          <div class="hero-meta">
+            <span class="meta-tag version"><span class="meta-label">Versión</span> 1.0</span>
+            <span class="meta-divider"></span>
+            <span class="meta-tag"><span class="meta-label">Módulos</span> 9</span>
+            <span class="meta-divider"></span>
+            <span class="meta-tag"><span class="meta-label">Plataforma</span> Comunidad ITVH</span>
+            <span class="meta-divider"></span>
+            <span class="meta-tag"><span class="meta-label">©</span> 2026 Programix NaveJL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTA DE VIGENCIA -->
+    <div class="info-bar">
+      <strong>Vigencia.</strong> El uso continuo de la app Comunidad ITVH implica la aceptación de todos los términos y condiciones aquí establecidos.
+    </div>
+
+    <!-- ══ MÓDULOS ══ -->
+    <div id="modules-container">
+
+      <!-- MÓDULO 1 -->
+      <div class="module-card" id="module-0">
+        <button class="module-header" onclick="toggleModule(0)">
+          <div class="module-num">01</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Registro e Inicio de Sesión</div>
+            <div class="module-subtitle">Elegibilidad, credenciales y acceso a la plataforma</div>
+          </div>
+          <span class="module-count">8 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">1.1</span><span class="section-title">Objetivo</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El presente módulo establece las condiciones aplicables al registro, autenticación y acceso de los usuarios a la app Comunidad ITVH, con la finalidad de garantizar un entorno seguro, confiable y exclusivo para la comunidad estudiantil del Instituto Tecnológico de Villahermosa.</p>
+              <p>El acceso a la Plataforma implica la aceptación de las disposiciones contenidas en este módulo, así como del resto de los presentes Términos y Condiciones de Uso.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">1.2</span><span class="section-title">Elegibilidad</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El registro en la app Comunidad ITVH está dirigido <strong>EXCLUSIVAMENTE</strong> a estudiantes activos del Instituto Tecnológico de Villahermosa. Para crear una cuenta, el usuario deberá proporcionar un correo electrónico institucional válido.</p>
+              <p>Programix NaveJL se reserva el derecho de rechazar, suspender o cancelar cualquier registro que no cumpla con los requisitos establecidos o respecto del cual existan indicios razonables de información falsa, suplantación de identidad o uso indebido de la Plataforma.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">1.3</span><span class="section-title">Creación de la cuenta</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Durante el proceso de registro, el usuario deberá proporcionar información veraz, completa y actualizada. La información solicitada podrá incluir:</p>
+              <ul>
+                <li>Nombre completo</li>
+                <li>Correo electrónico institucional</li>
+                <li>Nombre de usuario</li>
+                <li>Contraseña</li>
+                <li>Carrera y semestre</li>
+              </ul>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">1.4</span><span class="section-title">Credenciales de acceso</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Las credenciales de acceso son <strong>personales e intransferibles</strong>. El usuario es el único responsable de la confidencialidad de su contraseña y de todas las actividades realizadas desde su cuenta.</p>
+              <div class="prohibited-block">
+                <div class="p-label">Queda estrictamente prohibido</div>
+                <ul>
+                  <li>Compartir credenciales con terceros</li>
+                  <li>Permitir que otra persona utilice la cuenta propia</li>
+                  <li>Acceder a cuentas ajenas sin autorización</li>
+                  <li>Intentar obtener credenciales mediante engaño o fraude</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">1.5</span><span class="section-title">Recuperación del acceso</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>La app Comunidad ITVH podrá ofrecer mecanismos para la recuperación del acceso a la cuenta mediante el correo electrónico institucional registrado o cualquier otro procedimiento de verificación implementado por Programix NaveJL.</p>
+              <p>Por motivos de seguridad, Programix NaveJL podrá solicitar información adicional para verificar la identidad del solicitante antes de restablecer el acceso.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">1.6</span><span class="section-title">Uso adecuado de la cuenta</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El usuario se compromete a utilizar su cuenta de manera responsable, respetando los presentes Términos y Condiciones, las Normas de la Comunidad y las demás políticas aplicables.</p>
+              <p>El uso de la cuenta deberá realizarse exclusivamente para fines legítimos relacionados con las funcionalidades ofrecidas por la Plataforma.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">1.7</span><span class="section-title">Suspensión o cancelación del acceso</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Programix NaveJL podrá suspender o cancelar una cuenta cuando exista evidencia o sospecha razonable de que el usuario:</p>
+              <ul>
+                <li>Proporcionó información falsa durante el registro</li>
+                <li>Suplantó la identidad de otra persona</li>
+                <li>Compartió sus credenciales de acceso</li>
+                <li>Incumplió los presentes Términos y Condiciones</li>
+                <li>Utilizó la Plataforma para actividades ilícitas</li>
+                <li>Comprometió la seguridad o funcionamiento de la app</li>
+              </ul>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">1.8</span><span class="section-title">Modificaciones al proceso de registro</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Programix NaveJL podrá modificar, ampliar o actualizar los requisitos de registro, autenticación y verificación de identidad con el propósito de fortalecer la seguridad de la Plataforma o cumplir con disposiciones legales aplicables.</p>
+              <p>Dichas modificaciones serán comunicadas a los usuarios a través de los medios oficiales de la app Comunidad ITVH.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 2 -->
+      <div class="module-card" id="module-1">
+        <button class="module-header" onclick="toggleModule(1)">
+          <div class="module-num">02</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Perfil del Usuario</div>
+            <div class="module-subtitle">Información, visibilidad, distintivos y responsabilidades</div>
+          </div>
+          <span class="module-count">11 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">2.1</span><span class="section-title">Objetivo</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El presente módulo regula la creación, administración y uso del perfil personal dentro de la app Comunidad ITVH. El perfil constituye la identidad digital del usuario dentro de la comunidad y permite su interacción con las distintas funcionalidades ofrecidas por la Plataforma.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">2.2</span><span class="section-title">Información del perfil</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Cada usuario dispondrá de un perfil personal. El perfil podrá contener:</p>
+              <ul>
+                <li>Fotografía de perfil</li>
+                <li>Nombre completo y nombre de usuario</li>
+                <li>Carrera y semestre</li>
+                <li>Biografía o descripción personal (cuando esté disponible)</li>
+                <li>Publicaciones realizadas</li>
+                <li>Insignias o distintivos obtenidos dentro de la Plataforma</li>
+              </ul>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">2.3 – 2.4</span><span class="section-title">Exactitud y nombre de usuario</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El usuario se compromete a proporcionar información veraz y mantenerla actualizada. Está prohibido utilizar información falsa para engañar a otros usuarios.</p>
+              <div class="prohibited-block">
+                <div class="p-label">Nombres de usuario no permitidos</div>
+                <ul>
+                  <li>Que suplanten la identidad de otra persona</li>
+                  <li>Que simulen representar al ITVH sin autorización</li>
+                  <li>Con lenguaje ofensivo, discriminatorio o sexual explícito</li>
+                  <li>Que promuevan actividades ilícitas o induzcan al error</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">2.5 – 2.6</span><span class="section-title">Fotografía de perfil y biografía</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>La fotografía de perfil deberá corresponder al usuario o a una imagen cuya utilización sea legítima. No se permitirán imágenes con contenido sexual explícito, violencia, discriminación o infracción de derechos de autor.</p>
+              <p>La biografía personal no podrá utilizarse para difundir contenido ofensivo, promover actividades ilícitas, publicar información falsa, compartir datos de terceros sin autorización o realizar spam.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">2.7</span><span class="section-title">Distintivos e insignias</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>La app Comunidad ITVH podrá otorgar distintivos especiales a determinados usuarios. Entre ellos podrán encontrarse:</p>
+              <div class="tag-list" style="margin-top:0.5rem;">
+                <span class="tag" style="background:#e0f2fe;color:#075985;">⚡ Emprendedor Verificado</span>
+                <span class="tag" style="background:#f0fdf4;color:#14532d;">🤝 Colaborador</span>
+                <span class="tag" style="background:#fef9c3;color:#713f12;">🌟 Embajador</span>
+                <span class="tag" style="background:#fce7f3;color:#701a75;">🛡️ Moderador</span>
+              </div>
+              <p style="margin-top:0.75rem;">La obtención de un distintivo no confiere derechos especiales distintos a los expresamente establecidos. Programix NaveJL podrá suspender o retirar cualquier distintivo por incumplimiento.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">2.8 – 2.11</span><span class="section-title">Visibilidad, modificaciones y responsabilidad</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El perfil podrá ser visible para otros miembros conforme a la configuración de privacidad disponible en la Plataforma.</p>
+              <p>El usuario podrá actualizar su perfil a través de las herramientas disponibles. Programix NaveJL podrá establecer límites razonables respecto de la frecuencia de modificaciones.</p>
+              <p>Cada usuario es el <strong>único responsable</strong> del contenido que incorpore a su perfil. La existencia de un perfil en la app no implica aprobación o respaldo por parte de Programix NaveJL.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 3 -->
+      <div class="module-card" id="module-2">
+        <button class="module-header" onclick="toggleModule(2)">
+          <div class="module-num">03</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Comunidad Tecnológica</div>
+            <div class="module-subtitle">Publicaciones, interacciones y moderación de contenido</div>
+          </div>
+          <span class="module-count">12 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">3.1</span><span class="section-title">Objetivo</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>La sección Comunidad Tecnológica constituye el espacio principal de interacción dentro de la app, permitiendo compartir información, experiencias, ideas, proyectos y contenido de interés para la comunidad estudiantil del ITVH.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">3.2 – 3.4</span><span class="section-title">Publicación e interacción</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Los usuarios podrán publicar texto, imágenes y videos. En versiones futuras se incorporarán archivos multimedia, enlaces y ubicación.</p>
+              <div class="allowed-block">
+                <div class="p-label">Temáticas permitidas</div>
+                <div class="tag-list">
+                  <span class="tag">Actividades académicas</span><span class="tag">Investigación</span>
+                  <span class="tag">Innovación</span><span class="tag">Tecnología</span>
+                  <span class="tag">Cultura</span><span class="tag">Deportes</span>
+                  <span class="tag">Emprendimiento</span><span class="tag">Eventos universitarios</span>
+                  <span class="tag">Proyectos estudiantiles</span>
+                </div>
+              </div>
+              <p style="margin-top:0.75rem;">Los usuarios podrán interactuar mediante reacciones, comentarios y otras herramientas futuras. Toda interacción deberá realizarse con respeto hacia los demás miembros.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">3.5</span><span class="section-title">Responsabilidad del contenido</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Cada usuario es el único responsable del contenido que publique. Al realizarla, el usuario declara que es titular del contenido o cuenta con la autorización necesaria, que la información es veraz, y que no infringe derechos de terceros ni legislación aplicable.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">3.7</span><span class="section-title">Contenido prohibido</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <div class="prohibited-block">
+                <div class="p-label">Queda estrictamente prohibido publicar</div>
+                <ul>
+                  <li>Contenido que vulnere derechos humanos, promueva odio, discriminación o violencia</li>
+                  <li>Amenazas, intimidación o acoso hacia otros usuarios</li>
+                  <li>Divulgación de información personal de terceros sin consentimiento</li>
+                  <li>Material sexual explícito o que promueva actividades ilícitas</li>
+                  <li>Información falsa con intención de causar perjuicio</li>
+                  <li>Infracción de derechos de autor o propiedad intelectual</li>
+                  <li>Virus, código malicioso, spam o publicidad no autorizada</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">3.8 – 3.12</span><span class="section-title">Moderación, reportes y derechos</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Programix NaveJL podrá revisar, restringir, ocultar o eliminar publicaciones que presuntamente incumplan las políticas, incluso de forma preventiva.</p>
+              <p>Los usuarios podrán reportar publicaciones. Al publicar contenido, el usuario concede a Programix NaveJL una <strong>licencia no exclusiva y gratuita</strong> para almacenar, reproducir y mostrar dicho contenido exclusivamente dentro de la Plataforma.</p>
+              <p>El incumplimiento podrá dar lugar a eliminación del contenido, restricción de funcionalidades, suspensión temporal o cancelación definitiva de la cuenta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 4 -->
+      <div class="module-card" id="module-3">
+        <button class="module-header" onclick="toggleModule(3)">
+          <div class="module-num">04</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Marketplace</div>
+            <div class="module-subtitle">Compra, venta e intercambio entre estudiantes</div>
+          </div>
+          <span class="module-count">14 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">4.1 – 4.2</span><span class="section-title">Objetivo y acceso</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El Marketplace facilita la compra, venta, promoción e intercambio de productos y servicios, fomentando el emprendimiento estudiantil dentro del Instituto Tecnológico de Villahermosa.</p>
+              <p>Todos los usuarios podrán explorar publicaciones y contactar vendedores. Sin embargo, únicamente podrán <strong>publicar</strong> aquellos autorizados como <strong>Emprendedores Verificados</strong>.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">4.3 – 4.4</span><span class="section-title">Activación y verificación de emprendedor</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Para obtener acceso como vendedor, el usuario deberá completar el proceso de activación que podrá incluir: reautenticación, confirmación de correo institucional, presentación de credencial estudiantil vigente, verificación de identidad y aceptación del Reglamento del Marketplace.</p>
+              <p>El distintivo de <strong>Emprendedor Verificado</strong> brinda confianza a la comunidad pero no constituye una garantía sobre la calidad de los productos o servicios ofrecidos.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">4.6 – 4.7</span><span class="section-title">Productos permitidos y prohibidos</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <div class="allowed-block">
+                <div class="p-label">Productos y servicios permitidos</div>
+                <div class="tag-list">
+                  <span class="tag">Alimentos preparados</span><span class="tag">Productos tecnológicos</span>
+                  <span class="tag">Material académico</span><span class="tag">Artesanías</span>
+                  <span class="tag">Servicios de programación</span><span class="tag">Diseño gráfico</span>
+                  <span class="tag">Tutorías</span><span class="tag">Fotografía</span><span class="tag">Reparaciones</span>
+                </div>
+              </div>
+              <div class="prohibited-block" style="margin-top:0.75rem;">
+                <div class="p-label">Productos y servicios prohibidos</div>
+                <ul>
+                  <li>Armas, municiones o explosivos</li>
+                  <li>Sustancias ilícitas, alcohol, tabaco o vapeadores</li>
+                  <li>Medicamentos sin autorización sanitaria</li>
+                  <li>Productos falsificados o bienes robados</li>
+                  <li>Material pornográfico o servicios ilícitos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">4.8 – 4.14</span><span class="section-title">Responsabilidades y limitaciones</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El vendedor es el único responsable de la autenticidad de los productos, la veracidad de la información, el cumplimiento de los acuerdos y la legislación aplicable.</p>
+              <p>La app Comunidad ITVH actúa exclusivamente como <strong>plataforma tecnológica intermediaria</strong>. Programix NaveJL no participa en la fabricación, distribución ni entrega de los productos, y no garantiza el cumplimiento de las obligaciones entre las partes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 5 -->
+      <div class="module-card" id="module-4">
+        <button class="module-header" onclick="toggleModule(4)">
+          <div class="module-num">05</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Jaguar Chat</div>
+            <div class="module-subtitle">Sistema de mensajería integrado de la plataforma</div>
+          </div>
+          <span class="module-count">11 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">5.1 – 5.3</span><span class="section-title">Objetivo, acceso y uso permitido</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Jaguar Chat es el sistema de mensajería integrado, diseñado para facilitar la comunicación entre usuarios de forma segura, privada y respetuosa.</p>
+              <div class="allowed-block">
+                <div class="p-label">Uso permitido</div>
+                <ul>
+                  <li>Conversaciones privadas entre estudiantes</li>
+                  <li>Coordinación de actividades académicas</li>
+                  <li>Comunicación entre compradores y vendedores del Marketplace</li>
+                  <li>Compartir información relacionada con la comunidad estudiantil</li>
+                  <li>Envío de archivos e imágenes compatibles con las funcionalidades disponibles</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">5.4</span><span class="section-title">Privacidad de las conversaciones</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Programix NaveJL no monitorea de forma permanente las conversaciones privadas. No obstante, ante un reporte fundamentado, obligación legal o indicios razonables de actividades ilícitas, podrá adoptar las medidas necesarias para investigar los hechos, respetando la normativa de protección de datos personales.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">5.6</span><span class="section-title">Conductas prohibidas</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <div class="prohibited-block">
+                <div class="p-label">Queda estrictamente prohibido en Jaguar Chat</div>
+                <ul>
+                  <li>Acosar, intimidar o amenazar a otros usuarios</li>
+                  <li>Difundir discursos de odio o discriminación</li>
+                  <li>Compartir contenido sexual explícito o material ilegal</li>
+                  <li>Distribuir software malicioso o enlaces de phishing</li>
+                  <li>Realizar fraudes o intentos de estafa</li>
+                  <li>Suplantar la identidad de terceros</li>
+                  <li>Enviar mensajes masivos no solicitados (spam)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">5.7 – 5.11</span><span class="section-title">Reportes, seguridad y sanciones</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Los usuarios podrán reportar conversaciones o mensajes contrarios a los Términos y Condiciones. Los reportes serán revisados de manera confidencial.</p>
+              <p>Las sanciones por incumplimiento podrán incluir: advertencia, restricción temporal del servicio, eliminación de contenido, suspensión o cancelación definitiva de la cuenta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 6 -->
+      <div class="module-card" id="module-5">
+        <button class="module-header" onclick="toggleModule(5)">
+          <div class="module-num">06</div>
+          <div class="module-title-wrap">
+            <div class="module-title">UbicaTecNM Campus Villahermosa</div>
+            <div class="module-subtitle">Mapa interactivo de orientación dentro del campus</div>
+          </div>
+          <span class="module-count">9 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">6.1 – 6.3</span><span class="section-title">Objetivo, acceso y uso permitido</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>UbicaTecNM facilita la orientación y localización de edificios, oficinas, laboratorios, áreas comunes y espacios de interés dentro del Instituto Tecnológico de Villahermosa.</p>
+              <div class="allowed-block">
+                <div class="p-label">Uso permitido</div>
+                <ul>
+                  <li>Localizar edificios y dependencias del campus</li>
+                  <li>Consultar puntos de interés y visualizar rutas disponibles</li>
+                  <li>Compartir ubicaciones permitidas mediante herramientas integradas</li>
+                  <li>Utilizar el mapa como apoyo para actividades académicas o institucionales</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">6.4 – 6.5</span><span class="section-title">Exactitud e integración con otros módulos</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Programix NaveJL procurará mantener actualizada la información mostrada, sin embargo no garantiza que todos los datos geográficos permanezcan actualizados ante posibles modificaciones de la institución educativa.</p>
+              <p>UbicaTecNM podrá integrarse con Comunidad Tecnológica (para asociar publicaciones con lugares del campus), Marketplace (para sugerir puntos de encuentro) y Jaguar Chat (para compartir ubicaciones en conversaciones).</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">6.6 – 6.9</span><span class="section-title">Conductas prohibidas y limitaciones</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <div class="prohibited-block">
+                <div class="p-label">Conductas prohibidas</div>
+                <ul>
+                  <li>Difundir información falsa sobre ubicaciones o instalaciones</li>
+                  <li>Alterar o manipular el funcionamiento del servicio</li>
+                  <li>Utilizar el mapa para facilitar actividades ilícitas</li>
+                  <li>Promover el acoso o seguimiento indebido de otros usuarios</li>
+                </ul>
+              </div>
+              <p style="margin-top:0.75rem;">Programix NaveJL no garantiza la disponibilidad permanente ni la precisión absoluta de la información geográfica. El uso indebido podrá dar lugar a restricciones de acceso, suspensión o cancelación de la cuenta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 7 -->
+      <div class="module-card" id="module-6">
+        <button class="module-header" onclick="toggleModule(6)">
+          <div class="module-num">07</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Propiedad Intelectual</div>
+            <div class="module-subtitle">Titularidad, licencias y derechos sobre el contenido</div>
+          </div>
+          <span class="module-count">9 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">7.1 – 7.2</span><span class="section-title">Objetivo y titularidad de la plataforma</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>El presente módulo establece las disposiciones relativas a la propiedad intelectual. El uso de la Plataforma no implica la cesión de derechos distintos a los expresamente previstos.</p>
+              <p>Todos los derechos relacionados con la Plataforma —incluyendo desarrollo tecnológico, diseño de interfaz, logotipos, iconografía, documentación y bases de datos— pertenecen a <strong>Programix NaveJL</strong> o a sus respectivos titulares.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">7.3 – 7.4</span><span class="section-title">Marca, identidad visual y código fuente</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Los logotipos, emblemas y demás elementos de identidad visual son signos distintivos de Programix NaveJL. Los elementos académicos (logo ITVH, logo SIE, logo SWS, planes de estudio) pertenecen al Instituto Tecnológico de Villahermosa.</p>
+              <p>El código fuente, algoritmos y arquitectura de software son propiedad de Programix NaveJL. Queda prohibido copiar, descompilar o realizar ingeniería inversa sin autorización expresa y por escrito.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">7.5 – 7.9</span><span class="section-title">Contenido de usuarios y derechos reservados</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Los usuarios conservarán la titularidad de sus derechos sobre el contenido que generen. Al publicar, conceden a Programix NaveJL una <strong>licencia no exclusiva, gratuita y limitada</strong> para almacenar, reproducir y mostrar dicho contenido dentro de la Plataforma.</p>
+              <p>Los usuarios son responsables de asegurarse que el contenido de terceros que publiquen cuente con las autorizaciones necesarias. Todos los derechos no expresamente concedidos permanecen reservados.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 8 -->
+      <div class="module-card" id="module-7">
+        <button class="module-header" onclick="toggleModule(7)">
+          <div class="module-num">08</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Limitación de Responsabilidad</div>
+            <div class="module-subtitle">Alcances y límites de las obligaciones de Programix NaveJL</div>
+          </div>
+          <span class="module-count">12 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">8.1 – 8.3</span><span class="section-title">Naturaleza de la plataforma y contenido de usuarios</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>La app Comunidad ITVH es una plataforma tecnológica que facilita la interacción entre estudiantes. Programix NaveJL no participa como parte en las relaciones personales, académicas o comerciales que los usuarios establezcan entre sí.</p>
+              <p>La mayor parte del contenido es generado por los propios usuarios. Programix NaveJL no garantiza la veracidad, exactitud o legalidad del contenido generado.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">8.4</span><span class="section-title">Disponibilidad del servicio</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Programix NaveJL realizará esfuerzos razonables para mantener la app disponible. No obstante, la Plataforma podrá experimentar interrupciones derivadas de mantenimiento programado, actualizaciones de software, fallas en servicios de terceros, problemas de conectividad, casos fortuitos o incidentes de seguridad.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">8.5 – 8.9</span><span class="section-title">Marketplace, chat, mapa y seguridad</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Programix NaveJL actúa como intermediario tecnológico en el Marketplace y no será responsable por la calidad de productos, cumplimiento de acuerdos, retrasos en entregas, defectos o controversias comerciales entre usuarios.</p>
+              <p>No será responsable por el contenido de conversaciones privadas en Jaguar Chat ni por las decisiones tomadas por los usuarios.</p>
+              <p>La información geográfica de UbicaTecNM tiene carácter informativo. Programix NaveJL no garantiza la precisión absoluta ni la disponibilidad permanente del servicio.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">8.10 – 8.12</span><span class="section-title">Fuerza mayor y actualizaciones</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Programix NaveJL no será responsable por incumplimientos derivados de desastres naturales, interrupciones generalizadas de Internet, ataques cibernéticos de gran escala, actos de autoridad u otros supuestos de fuerza mayor o caso fortuito.</p>
+              <p>En la máxima medida permitida por la legislación, la responsabilidad de Programix NaveJL se limitará a la prestación de los servicios tecnológicos que integran la app Comunidad ITVH.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 9 -->
+      <div class="module-card" id="module-8">
+        <button class="module-header" onclick="toggleModule(8)">
+          <div class="module-num">09</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Contacto y Medios Oficiales</div>
+            <div class="module-subtitle">Canales autorizados de comunicación con Programix NaveJL</div>
+          </div>
+          <span class="module-count">8 secciones</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">9.2</span><span class="section-title">Medios oficiales</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Toda comunicación oficial será realizada exclusivamente a través de los canales autorizados por Programix NaveJL:</p>
+              <ul>
+                <li>Sitio web oficial: <strong>programix-navejl.github.io/programix-navejl</strong></li>
+                <li>Correo electrónico institucional de soporte</li>
+                <li>Formularios oficiales de contacto</li>
+                <li>Redes sociales verificadas de Programix NaveJL</li>
+                <li>Comunicados publicados dentro de la propia aplicación</li>
+              </ul>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">9.3</span><span class="section-title">Soporte técnico</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Los usuarios podrán solicitar asistencia para reportar: problemas de acceso, errores técnicos, recuperación de cuentas, incidencias del Marketplace, problemas en Jaguar Chat, errores en UbicaTecNM y consultas generales.</p>
+              <p>Programix NaveJL procurará atender las solicitudes en un plazo razonable, sin que ello implique una obligación de respuesta inmediata.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">9.4 – 9.5</span><span class="section-title">Reportes de contenido y vulnerabilidades</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Los usuarios podrán reportar publicaciones, perfiles, productos o conversaciones contrarios a los Términos y Condiciones. Todos los reportes serán analizados de forma objetiva y confidencial.</p>
+              <p>Programix NaveJL promueve la colaboración responsable para fortalecer la seguridad. Cualquier persona que identifique una posible vulnerabilidad podrá comunicarla mediante los canales oficiales.</p>
+            </div>
+          </div>
+          <div class="section-item">
+            <button class="section-header" onclick="toggleSection(this)">
+              <span class="section-num">9.7</span><span class="section-title">Validez de las comunicaciones</span>
+              <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="section-body">
+              <p>Únicamente se considerarán oficiales las comunicaciones emitidas por Programix NaveJL a través de los medios expresamente reconocidos. Se recomienda a los usuarios verificar siempre la autenticidad de cualquier comunicación antes de proporcionar información personal o realizar pagos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /modules-container -->
+
+    <!-- ══ DISPOSICIÓN FINAL ══ -->
+    <div class="final-card">
+      <div class="final-brand">
+        <img src="imagenes/logo_comunidad_itvh.png" alt="Comunidad ITVH" class="final-brand-logo">
+        <div class="final-brand-text">
+          <h2>Disposición Final</h2>
+          <p>Información oficial del documento — Comunidad ITVH</p>
+        </div>
+      </div>
+
+      <div class="final-body">
+        <p>Los presentes Términos y Condiciones de Uso constituyen el marco general que regula el acceso y utilización de la app Comunidad ITVH. La utilización continua de la app después de cualquier actualización implica la aceptación de las modificaciones correspondientes, salvo que la legislación aplicable disponga lo contrario.</p>
+
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="c-label">Documento</div>
+            <div class="c-val">Términos y Condiciones de Uso</div>
+          </div>
+          <div class="contact-item">
+            <div class="c-label">Versión</div>
+            <div class="c-val">1.0</div>
+          </div>
+          <div class="contact-item">
+            <div class="c-label">Plataforma</div>
+            <div class="c-val">Comunidad ITVH</div>
+          </div>
+          <div class="contact-item">
+            <div class="c-label">Desarrollado por</div>
+            <div class="c-val">Programix NaveJL</div>
+          </div>
+          <div class="contact-item">
+            <div class="c-label">Sitio web oficial</div>
+            <div class="c-val"><a href="https://programix-navejl.github.io/programix-navejl" target="_blank">programix-navejl.github.io</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="c-label">Correo de contacto</div>
+            <div class="c-val"><a href="mailto:alfredo.naveju.lop@gmail.com">alfredo.naveju.lop@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="final-divider"></div>
+
+        <div class="copyright">
+          <span>© 2026 Programix NaveJL. Todos los derechos reservados.</span>
+          <img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" class="copyright-logo">
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Ir al inicio">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+  const modules  = document.querySelectorAll('.module-card');
+  const navItems = document.querySelectorAll('.nav-item');
+  const html     = document.documentElement;
+
+  /* ── TEMA ── */
+  (function() {
+    const saved = localStorage.getItem('itvh-theme');
+    if (saved) {
+      html.setAttribute('data-theme', saved);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      html.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    }
+  })();
+
+  function toggleTheme() {
+    const current = html.getAttribute('data-theme');
+    const next    = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('itvh-theme', next);
+  }
+
+  /* ── MÓDULOS ── */
+  function toggleModule(idx) {
+    modules[idx].classList.toggle('open');
+  }
+
+  function toggleSection(btn) {
+    const body  = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('s-open');
+    btn.classList.toggle('s-open', !isOpen);
+    body.classList.toggle('visible', !isOpen);
+  }
+
+  function scrollToModule(idx, e) {
+    e.preventDefault();
+    const card = modules[idx];
+    if (!card.classList.contains('open')) card.classList.add('open');
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    navItems.forEach(n => n.classList.remove('active'));
+    navItems[idx].classList.add('active');
+    document.getElementById('sidebar').classList.remove('open');
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+
+  function downloadPDF(e) {
+    e.preventDefault();
+    window.open('docs/Comunidad ITVH - Terminos y condiciones de uso.pdf', '_blank');
+  }
+
+  /* ── SCROLL: sidebar activo + botón subir ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('scroll-top').classList.toggle('show', window.scrollY > 400);
+    let current = 0;
+    modules.forEach((m, i) => { if (m.getBoundingClientRect().top < 120) current = i; });
+    navItems.forEach(n => n.classList.remove('active'));
+    navItems[current].classList.add('active');
+  });
+
+  /* Abre el primer módulo por defecto */
+  modules[0].classList.add('open');
+</script>
+</body>
+</html>
