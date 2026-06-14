@@ -8,6 +8,8 @@
 desarrollada por <strong>Programix NaveJL</strong> para la comunidad estudiantil<br>
 del Instituto Tecnológico de Villahermosa.</p>
 
+</div>
+
 ![Version](https://img.shields.io/badge/Versión-1.0-2E6E4E?style=flat-square)
 ![Módulos](https://img.shields.io/badge/Módulos-9-2E6E4E?style=flat-square)
 ![Año](https://img.shields.io/badge/©_2026-Programix_NaveJL-B5832A?style=flat-square)
