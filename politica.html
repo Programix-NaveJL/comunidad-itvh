@@ -11,7 +11,6 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ── TEMA CLARO ── */
   :root,
   [data-theme="light"] {
     --bg: #FAF8F2;
@@ -66,51 +65,78 @@
     z-index: 100;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 64px;
+    padding: 0 1.25rem;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.75rem;
     transition: background 0.25s, border-color 0.25s;
   }
 
   .topbar-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
     color: var(--text-primary);
+    min-width: 0;
+    flex: 1;
   }
 
   .brand-logo {
-    height: 36px;
+    height: 32px;
     width: auto;
     object-fit: contain;
     display: block;
     flex-shrink: 0;
     filter: var(--topbar-logo-filter);
-    transition: filter 0.25s;
   }
 
   .brand-divider {
     width: 1px;
-    height: 28px;
+    height: 24px;
     background: var(--border);
     flex-shrink: 0;
   }
 
-  .brand-text { display: flex; flex-direction: column; }
-  .brand-name { font-size: 13px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.2; }
-  .brand-sub  { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 1px; }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .brand-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .brand-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-  .topbar-right { display: flex; align-items: center; gap: 8px; }
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
 
+  /* PDF button — siempre muestra texto */
   .btn-pdf {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 8px 16px;
+    gap: 6px;
+    padding: 8px 14px;
     background: var(--accent);
     color: #fff;
     border: none;
@@ -121,11 +147,18 @@
     cursor: pointer;
     transition: background 0.15s, transform 0.1s;
     white-space: nowrap;
+    flex-shrink: 0;
   }
   .btn-pdf:hover { background: var(--accent-dark); }
   .btn-pdf:active { transform: scale(0.97); }
-  .btn-pdf svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .btn-pdf svg {
+    width: 15px; height: 15px;
+    fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    flex-shrink: 0;
+  }
 
+  /* Hamburger */
   .mobile-menu-btn {
     display: none;
     background: none;
@@ -134,16 +167,22 @@
     padding: 6px 8px;
     cursor: pointer;
     color: var(--text-primary);
+    flex-shrink: 0;
   }
-  .mobile-menu-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; display: block; }
+  .mobile-menu-btn svg {
+    width: 20px; height: 20px;
+    fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round;
+    display: block;
+  }
 
   /* ── LAYOUT ── */
   .layout {
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
-    gap: 2rem;
+    padding: 1.5rem 1.25rem;
+    gap: 1.75rem;
     align-items: flex-start;
   }
 
@@ -152,8 +191,8 @@
     width: var(--sidebar-w);
     flex-shrink: 0;
     position: sticky;
-    top: 84px;
-    max-height: calc(100vh - 104px);
+    top: 80px;
+    max-height: calc(100vh - 100px);
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
@@ -207,13 +246,11 @@
     border: 1px solid var(--border);
   }
   .sidebar-footer-logo {
-    height: 28px;
-    width: auto;
+    height: 28px; width: auto;
     object-fit: contain;
     margin-bottom: 8px;
     display: block;
     filter: var(--topbar-logo-filter);
-    transition: filter 0.25s;
   }
   .sidebar-footer p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
   .sidebar-footer a { color: var(--accent); text-decoration: none; }
@@ -227,13 +264,11 @@
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     overflow: hidden;
-    transition: background 0.25s, border-color 0.25s;
   }
-
   .hero-band {
-    height: 52px;
+    height: 48px;
     background-color: var(--accent-dark);
     background-image:
       radial-gradient(circle at 10px 12px, rgba(255,255,255,0.13) 0 3px, transparent 3.5px),
@@ -241,72 +276,65 @@
       radial-gradient(circle at 58px 10px, rgba(255,255,255,0.10) 0 2px, transparent 2.5px),
       radial-gradient(circle at 80px 34px, rgba(255,255,255,0.08) 0 2.5px, transparent 3px);
     background-size: 96px 48px;
-    transition: background-color 0.25s;
   }
   .hero-body {
     display: flex;
     align-items: flex-start;
-    gap: 1.5rem;
-    padding: 1.5rem 2rem 2rem;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem 1.75rem;
   }
-
   .hero-logo {
-    width: 64px; height: 64px;
+    width: 60px; height: 60px;
     object-fit: contain;
     flex-shrink: 0;
     border-radius: 12px;
     background: var(--bg);
     border: 1px solid var(--border);
     padding: 6px;
-    margin-top: -38px;
+    margin-top: -36px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    transition: background 0.25s, border-color 0.25s;
   }
-
-  .hero h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 6px; }
-  .hero p  { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
-
+  .hero h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 6px; }
+  .hero p  { font-size: 13.5px; color: var(--text-secondary); line-height: 1.65; }
   .hero-meta {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
-    margin-top: 16px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-top: 14px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--text-secondary);
   }
   .meta-tag { display: inline-flex; align-items: baseline; gap: 5px; }
   .meta-tag .meta-label {
-    font-size: 9.5px; font-weight: 500; letter-spacing: 0.1em;
+    font-size: 9px; font-weight: 500; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--text-muted);
   }
   .meta-tag.version { color: var(--gold); font-weight: 600; }
-  .meta-divider { width: 1px; height: 13px; background: var(--border); }
+  .meta-divider { width: 1px; height: 12px; background: var(--border); }
 
   /* INTRO CARD */
   .intro-card {
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 1rem;
     font-size: 13.5px;
     color: var(--text-secondary);
     line-height: 1.75;
-    transition: background 0.25s, border-color 0.25s;
   }
-  .intro-card p { margin-bottom: 0.65rem; }
+  .intro-card p { margin-bottom: 0.6rem; }
   .intro-card p:last-child { margin-bottom: 0; }
   .intro-card strong { color: var(--text-primary); font-weight: 600; }
 
-  /* NOTA */
+  /* INFO BAR */
   .info-bar {
     background: var(--bg);
     border: 1px solid var(--border);
     border-left: 3px solid var(--gold);
     border-radius: var(--radius);
-    padding: 12px 16px;
+    padding: 11px 14px;
     font-size: 13px; color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    transition: background 0.25s, border-color 0.25s;
+    margin-bottom: 1rem;
   }
   .info-bar strong { color: var(--text-primary); font-weight: 600; }
 
@@ -315,32 +343,33 @@
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     overflow: hidden;
-    transition: border-color 0.15s, background 0.25s;
+    transition: border-color 0.15s;
   }
   .module-card:hover { border-color: var(--border-hover); }
   .module-card.open  { border-color: var(--accent); }
 
   .module-header {
-    display: flex; align-items: center; gap: 14px;
-    padding: 1.2rem 1.5rem;
+    display: flex; align-items: center; gap: 12px;
+    padding: 1rem 1.25rem;
     cursor: pointer; user-select: none;
     background: none; border: none;
     width: 100%; text-align: left;
     color: var(--text-primary);
     transition: background 0.1s;
+    -webkit-tap-highlight-color: transparent;
   }
   .module-header:hover { background: var(--bg-secondary); }
   .module-card.open .module-header { background: var(--bg-secondary); }
 
   .module-num {
-    width: 36px; height: 36px;
+    width: 34px; height: 34px;
     background: var(--bg-tertiary);
     border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; font-weight: 600;
+    font-size: 12px; font-weight: 600;
     color: var(--text-muted);
     flex-shrink: 0;
     transition: background 0.15s, color 0.15s;
@@ -348,19 +377,23 @@
   .module-card.open .module-num { background: var(--accent); color: #fff; }
 
   .module-title-wrap { flex: 1; min-width: 0; }
-  .module-title    { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .module-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+  .module-title {
+    font-size: 14px; font-weight: 600;
+    letter-spacing: -0.2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .module-subtitle { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   .module-count {
     font-size: 11px; color: var(--text-muted);
     background: var(--bg-tertiary);
     border: 1px solid var(--border);
-    padding: 2px 8px; border-radius: 20px;
+    padding: 2px 7px; border-radius: 20px;
     white-space: nowrap; flex-shrink: 0;
   }
 
   .chevron {
-    width: 18px; height: 18px; flex-shrink: 0;
+    width: 17px; height: 17px; flex-shrink: 0;
     fill: none; stroke: var(--text-muted);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
     transition: transform 0.2s;
@@ -376,24 +409,25 @@
 
   .section-header {
     display: flex; align-items: center; gap: 10px;
-    padding: 12px 1.5rem;
+    padding: 11px 1.25rem;
     cursor: pointer; user-select: none;
     background: none; border: none;
     width: 100%; text-align: left;
     color: var(--text-primary);
     transition: background 0.1s;
+    -webkit-tap-highlight-color: transparent;
   }
   .section-header:hover { background: var(--bg-secondary); }
   .section-header.s-open { background: var(--bg-tertiary); }
 
   .section-num {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 600;
-    color: var(--accent); width: 52px; flex-shrink: 0;
+    font-size: 10.5px; font-weight: 600;
+    color: var(--accent); width: 50px; flex-shrink: 0;
   }
   .section-title { font-size: 13px; font-weight: 500; flex: 1; }
   .s-chevron {
-    width: 14px; height: 14px;
+    width: 13px; height: 13px;
     fill: none; stroke: var(--text-muted);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
     transition: transform 0.18s; flex-shrink: 0;
@@ -402,16 +436,15 @@
 
   .section-body {
     display: none;
-    padding: 1rem 1.5rem 1.2rem calc(1.5rem + 62px);
-    font-size: 14px; color: var(--text-secondary);
+    padding: 1rem 1.25rem 1.1rem;
+    font-size: 13.5px; color: var(--text-secondary);
     line-height: 1.75; background: var(--bg);
-    transition: background 0.25s;
   }
   .section-body.visible { display: block; }
-  .section-body p { margin-bottom: 0.75rem; }
+  .section-body p { margin-bottom: 0.7rem; }
   .section-body p:last-child { margin-bottom: 0; }
   .section-body ul { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 0.5rem 0; }
-  .section-body ul li { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; }
+  .section-body ul li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; }
   .section-body ul li::before {
     content: ''; width: 5px; height: 5px;
     border-radius: 50%; background: var(--accent);
@@ -423,14 +456,12 @@
   .prohibited-block, .allowed-block, .note-block {
     border-left: 3px solid;
     border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 10px 14px; margin: 0.75rem 0;
+    padding: 10px 12px; margin: 0.75rem 0;
     font-size: 13px;
-    transition: background 0.25s, border-color 0.25s, color 0.25s;
   }
   .prohibited-block { border-color: var(--prohibited-border); background: var(--prohibited-bg); }
   .allowed-block    { border-color: var(--allowed-border);    background: var(--allowed-bg); }
   .note-block       { border-color: var(--note-border);       background: var(--note-bg); }
-
   .p-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; font-weight: 600;
@@ -444,7 +475,7 @@
 
   .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
   .tag {
-    font-size: 12px; padding: 3px 9px;
+    font-size: 11.5px; padding: 3px 8px;
     border-radius: var(--radius);
     background: var(--tag-bg);
     color: var(--text-secondary);
@@ -462,7 +493,6 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 10px 12px;
-    transition: background 0.25s, border-color 0.25s;
   }
   .principle-icon { font-size: 16px; margin-bottom: 4px; }
   .principle-title { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
@@ -473,94 +503,195 @@
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     overflow: hidden;
-    transition: background 0.25s, border-color 0.25s;
   }
-
   .final-brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 1.25rem 2rem;
+    display: flex; align-items: center; gap: 12px;
+    padding: 1.1rem 1.25rem;
     border-bottom: 1px solid var(--border);
     background: var(--bg-secondary);
-    transition: background 0.25s, border-color 0.25s;
   }
-  .final-brand-logo { height: 48px; width: auto; object-fit: contain; flex-shrink: 0; }
-  .final-brand-text h2 { font-size: 16px; font-weight: 600; }
-  .final-brand-text p  { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-
-  .final-body { padding: 1.5rem 2rem; }
+  .final-brand-logo { height: 44px; width: auto; object-fit: contain; flex-shrink: 0; }
+  .final-brand-text h2 { font-size: 15px; font-weight: 600; }
+  .final-brand-text p  { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+  .final-body { padding: 1.25rem; }
   .final-body > p { font-size: 13.5px; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
 
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 0.75rem; }
   .contact-item {
     background: var(--bg-secondary);
     border-radius: var(--radius);
-    padding: 12px 14px;
+    padding: 10px 12px;
     border: 1px solid var(--border);
-    transition: background 0.25s, border-color 0.25s;
   }
-  .contact-item .c-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 4px; }
-  .contact-item .c-val   { font-size: 13px; color: var(--text-primary); word-break: break-word; }
+  .contact-item .c-label { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 3px; }
+  .contact-item .c-val   { font-size: 12.5px; color: var(--text-primary); word-break: break-word; }
   .contact-item .c-val a { color: var(--accent); text-decoration: none; }
   .contact-item .c-val a:hover { text-decoration: underline; }
 
-  .final-divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
-
+  .final-divider { height: 1px; background: var(--border); margin: 1.1rem 0; }
   .copyright {
     display: flex; align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap; gap: 10px;
-    font-size: 12px; color: var(--text-muted);
+    flex-wrap: wrap; gap: 8px;
+    font-size: 11.5px; color: var(--text-muted);
   }
   .copyright-logo {
-    height: 22px; width: auto;
+    height: 20px; width: auto;
     object-fit: contain; opacity: 0.55;
-    transition: opacity 0.15s, filter 0.25s;
     filter: var(--topbar-logo-filter);
   }
-  .copyright-logo:hover { opacity: 0.9; }
 
   /* SCROLL TOP */
   .scroll-top {
     position: fixed;
-    bottom: 2rem; right: 2rem;
-    width: 40px; height: 40px;
+    bottom: 1.5rem; right: 1.5rem;
+    width: 42px; height: 42px;
     background: var(--accent);
     border: none; border-radius: 50%;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s, background 0.25s;
+    transition: opacity 0.2s, transform 0.2s;
     z-index: 50;
+    box-shadow: 0 2px 12px rgba(46,110,78,0.3);
   }
   .scroll-top.show { opacity: 1; pointer-events: auto; }
   .scroll-top:hover { transform: translateY(-2px); }
   .scroll-top svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
+  /* ════════════════════════════════
+     RESPONSIVE — MOBILE FIRST
+  ════════════════════════════════ */
+
+  /* Tablet: sidebar se oculta en hamburger */
+  @media (max-width: 900px) {
     .mobile-menu-btn { display: flex; }
-    .layout { flex-direction: column; padding: 1rem; gap: 1rem; }
+    .brand-sub { display: none; }
+
+    .layout {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 0.75rem;
+    }
+
+    /* Sidebar se convierte en panel deslizable desde arriba */
     .sidebar {
-      position: static; width: 100%; max-height: none;
+      position: static;
+      width: 100%;
+      max-height: none;
       display: none;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      overflow: visible;
     }
     .sidebar.open { display: block; }
-    .hero-body { flex-direction: column; padding: 1.25rem; gap: 1rem; }
-    .hero h1 { font-size: 18px; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .topbar { padding: 0 1rem; }
-    .brand-sub { display: none; }
-    .btn-pdf span { display: none; }
-    .final-brand { padding: 1rem 1.25rem; }
-    .final-body { padding: 1.25rem; }
-    .principles-grid { grid-template-columns: 1fr; }
-    .section-body { padding: 1rem 1.25rem 1.2rem; }
+
+    /* Grids a columna simple */
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .principles-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Móvil compacto */
+  @media (max-width: 480px) {
+    /* Topbar: logo + texto + PDF + hamburger bien distribuidos */
+    .topbar {
+      padding: 0 0.875rem;
+      height: 56px;
+      gap: 0.5rem;
+    }
+    .topbar-brand { gap: 8px; }
+    .brand-logo { height: 28px; }
+    .brand-divider { height: 20px; }
+    .brand-name { font-size: 12px; }
+
+    /* PDF: reduce padding, mantiene texto */
+    .btn-pdf {
+      padding: 7px 10px;
+      font-size: 12px;
+      gap: 5px;
+    }
+    .btn-pdf svg { width: 13px; height: 13px; }
+
+    /* Hero: logo encima del texto */
+    .hero-body {
+      flex-direction: column;
+      padding: 1rem 1rem 1.25rem;
+      gap: 0.75rem;
+    }
+    .hero-logo {
+      width: 52px; height: 52px;
+      margin-top: -32px;
+    }
+    .hero h1 { font-size: 17px; }
+    .hero p  { font-size: 13px; }
+    .hero-meta { gap: 8px; font-size: 11px; }
+    .meta-divider { display: none; }
+
+    /* Intro y info bar */
+    .intro-card { padding: 1rem; font-size: 13px; }
+    .info-bar   { padding: 10px 12px; font-size: 12.5px; }
+
+    /* Módulos */
+    .module-header { padding: 0.875rem 1rem; gap: 10px; }
+    .module-num    { width: 30px; height: 30px; font-size: 11px; }
+    .module-title  { font-size: 13px; }
+    .module-subtitle { display: none; }       /* muy largo en móvil */
+    .module-count  { display: none; }          /* prescindible en móvil */
+    .chevron       { width: 15px; height: 15px; }
+
+    /* Secciones */
+    .section-header { padding: 10px 1rem; gap: 8px; }
+    .section-num    { font-size: 10px; width: 44px; }
+    .section-title  { font-size: 12.5px; }
+    .s-chevron      { width: 12px; height: 12px; }
+
+    .section-body {
+      padding: 0.875rem 1rem 1rem;
+      font-size: 13px;
+    }
+    .section-body ul li { font-size: 12.5px; }
+
+    /* Principios: una columna */
+    .principles-grid { grid-template-columns: 1fr; gap: 6px; }
+    .principle-item  { padding: 8px 10px; }
+    .principle-icon  { font-size: 14px; margin-bottom: 2px; }
+    .principle-title { font-size: 11.5px; }
+    .principle-desc  { font-size: 11px; }
+
+    /* Bloques semánticos */
+    .prohibited-block, .allowed-block, .note-block {
+      padding: 8px 10px;
+      font-size: 12.5px;
+    }
+    .tag { font-size: 11px; padding: 2px 7px; }
+
+    /* Final card */
+    .final-brand { padding: 0.875rem 1rem; gap: 10px; }
+    .final-brand-logo { height: 36px; }
+    .final-brand-text h2 { font-size: 14px; }
+    .final-brand-text p  { font-size: 12px; }
+    .final-body { padding: 1rem; }
+    .final-body > p { font-size: 13px; }
+
+    /* Contacto: una columna */
+    .contact-grid { grid-template-columns: 1fr; gap: 6px; }
+    .contact-item { padding: 9px 10px; }
+    .contact-item .c-label { font-size: 10px; }
+    .contact-item .c-val   { font-size: 12px; }
+
+    .copyright { font-size: 11px; }
+    .scroll-top { bottom: 1rem; right: 1rem; width: 38px; height: 38px; }
+  }
+
+  /* Pantallas MUY pequeñas (< 360px) */
+  @media (max-width: 360px) {
+    .brand-divider { display: none; }
+    .brand-text { display: none; }
+    .btn-pdf { padding: 7px 9px; font-size: 11.5px; }
   }
 </style>
 </head>
@@ -580,7 +711,7 @@
   <div class="topbar-right">
     <a href="#" class="btn-pdf" onclick="downloadPDF(event)">
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span>Descargar PDF</span>
+      Descargar PDF
     </a>
 
     <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Menú">
@@ -663,7 +794,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">1.1</span><span class="section-title">Objetivo</span>
@@ -673,7 +803,6 @@
               <p>El presente módulo tiene por finalidad identificar al responsable del tratamiento de los datos personales recopilados a través de la app Comunidad ITVH, así como establecer el alcance de la presente Política de Privacidad y los compromisos asumidos por Programix NaveJL respecto a la protección de la información de los usuarios.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">1.2</span><span class="section-title">Responsable del tratamiento</span>
@@ -684,7 +813,6 @@
               <p>Programix NaveJL determina las finalidades y los medios mediante los cuales se recaban, utilizan, almacenan, protegen y, en su caso, eliminan los datos personales tratados a través de la app Comunidad ITVH, conforme a lo dispuesto en la presente Política de Privacidad y en la legislación aplicable.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">1.3</span><span class="section-title">Alcance de la Política</span>
@@ -703,7 +831,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">1.4</span><span class="section-title">Compromiso con la privacidad</span>
@@ -734,7 +861,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">1.5</span><span class="section-title">Aplicación conjunta con otros documentos</span>
@@ -745,7 +871,6 @@
               <p>En caso de contradicción respecto al tratamiento de datos personales, prevalecerán las disposiciones de la presente Política, salvo que la legislación aplicable establezca lo contrario.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">1.6</span><span class="section-title">Datos de contacto del responsable</span>
@@ -755,7 +880,6 @@
               <p>Los usuarios podrán comunicarse con Programix NaveJL para realizar consultas relacionadas con la presente Política, ejercer sus derechos respecto a sus datos personales o reportar cualquier situación relacionada con el tratamiento de la información, mediante los canales oficiales publicados en el sitio web y en la app Comunidad ITVH.</p>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -771,7 +895,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.1</span><span class="section-title">Objetivo</span>
@@ -781,7 +904,6 @@
               <p>El presente módulo informa a los usuarios sobre los datos personales que pueden ser recopilados durante el uso de la app Comunidad ITVH. Programix NaveJL recopila únicamente los datos que resultan necesarios para el funcionamiento de la Plataforma, aplicando en todo momento el principio de <strong>minimización de datos</strong>.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.2</span><span class="section-title">Datos de registro</span>
@@ -797,7 +919,6 @@
               </ul>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.3</span><span class="section-title">Datos del perfil de usuario</span>
@@ -817,7 +938,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.4</span><span class="section-title">Comunidad Tecnológica</span>
@@ -827,7 +947,6 @@
               <p>Cuando el usuario participe en la sección Comunidad Tecnológica, podrán recopilarse los datos derivados de su actividad, tales como publicaciones, comentarios, reacciones, fotografías, videos, archivos multimedia, y la fecha y hora de las interacciones realizadas.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.5</span><span class="section-title">Marketplace</span>
@@ -838,7 +957,6 @@
               <p>Cuando el usuario solicite verificación como emprendedor, podrá requerirse información adicional conforme al procedimiento establecido.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.6</span><span class="section-title">Jaguar Chat</span>
@@ -849,7 +967,6 @@
               <p>Programix NaveJL aplicará medidas razonables para proteger la confidencialidad de las conversaciones.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.7</span><span class="section-title">Verificación de Emprendedores</span>
@@ -868,7 +985,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.8</span><span class="section-title">Información técnica y de uso</span>
@@ -879,7 +995,6 @@
               <p>Esta información se utilizará principalmente para seguridad, mantenimiento, diagnóstico de errores y mejora continua.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">2.9</span><span class="section-title">Información que no recopilamos</span>
@@ -892,7 +1007,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -908,7 +1022,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.1</span><span class="section-title">Objetivo</span>
@@ -918,7 +1031,6 @@
               <p>El presente módulo informa a los usuarios sobre las razones por las cuales Programix NaveJL trata los datos personales recopilados, garantizando que dicho tratamiento se realice únicamente para fines legítimos, específicos y relacionados con el funcionamiento de la Plataforma.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.2</span><span class="section-title">Gestión de la cuenta de usuario</span>
@@ -934,7 +1046,6 @@
               </ul>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.3</span><span class="section-title">Prestación de servicios</span>
@@ -952,7 +1063,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.4</span><span class="section-title">Verificación de emprendedores</span>
@@ -962,7 +1072,6 @@
               <p>Los datos proporcionados durante este proceso serán utilizados exclusivamente para verificar la identidad del solicitante, confirmar su vínculo con el ITVH, validar los requisitos establecidos y otorgar, mantener o revocar el distintivo cuando resulte procedente.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.5</span><span class="section-title">Seguridad y protección</span>
@@ -978,7 +1087,6 @@
               </ul>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.6</span><span class="section-title">Atención a los usuarios</span>
@@ -988,7 +1096,6 @@
               <p>La información también podrá utilizarse para atender consultas, dar respuesta a solicitudes de soporte, gestionar reportes de errores, atender reportes sobre publicaciones o perfiles, y dar seguimiento a solicitudes relacionadas con la privacidad.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.7</span><span class="section-title">Mejora continua</span>
@@ -999,7 +1106,6 @@
               <p>En estos casos, se procurará que la información utilizada no permita identificar directamente a los usuarios cuando ello no sea necesario.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.8</span><span class="section-title">Cumplimiento de obligaciones legales</span>
@@ -1009,7 +1115,6 @@
               <p>Los datos personales podrán ser tratados cuando resulte necesario para cumplir obligaciones legales, atender requerimientos de autoridades competentes o ejercer los derechos que correspondan a Programix NaveJL en procedimientos administrativos o judiciales.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">3.9</span><span class="section-title">Limitación de la finalidad</span>
@@ -1022,7 +1127,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -1038,7 +1142,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">4.1</span><span class="section-title">Objetivo</span>
@@ -1048,7 +1151,6 @@
               <p>El presente módulo informa a los usuarios sobre los criterios aplicados por Programix NaveJL para la conservación, actualización y eliminación de los datos personales, garantizando que la información únicamente sea conservada durante el tiempo necesario para cumplir con las finalidades descritas o con las obligaciones previstas en la legislación aplicable.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">4.2</span><span class="section-title">Plazo general de conservación</span>
@@ -1059,7 +1161,6 @@
               <p>Programix NaveJL procurará mantener la información actualizada y limitar su conservación al periodo estrictamente necesario para cumplir con las finalidades para las cuales fue recopilada.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">4.3</span><span class="section-title">Eliminación de la cuenta</span>
@@ -1074,7 +1175,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">4.4</span><span class="section-title">Copias de seguridad</span>
@@ -1084,7 +1184,6 @@
               <p>Con el propósito de garantizar la continuidad del servicio, Programix NaveJL podrá mantener copias de seguridad de determinados datos durante periodos limitados. Estas copias estarán sujetas a las mismas medidas de seguridad aplicables a la información principal y serán eliminadas conforme a los procedimientos internos de gestión de respaldos.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">4.5</span><span class="section-title">Conservación por motivos legales o de seguridad</span>
@@ -1100,7 +1199,6 @@
               </ul>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">4.6</span><span class="section-title">Actualización de la información</span>
@@ -1110,7 +1208,6 @@
               <p>Los usuarios podrán actualizar los datos de su perfil cuando las funcionalidades de la app así lo permitan. Programix NaveJL recomienda mantener la información actualizada para garantizar el correcto funcionamiento de la Plataforma.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">4.7</span><span class="section-title">Principio de conservación limitada</span>
@@ -1123,7 +1220,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -1139,7 +1235,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">5.1 – 5.2</span><span class="section-title">Objetivo y compromiso</span>
@@ -1149,7 +1244,6 @@
               <p>Programix NaveJL reconoce que la protección de la información constituye un elemento esencial para el correcto funcionamiento de la app. Se implementan medidas técnicas, administrativas y organizativas razonables destinadas a prevenir el acceso no autorizado, la alteración, pérdida, destrucción, divulgación o cualquier otro tratamiento indebido de los datos personales.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">5.3</span><span class="section-title">Medidas de protección</span>
@@ -1169,7 +1263,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">5.4</span><span class="section-title">Infraestructura tecnológica</span>
@@ -1180,7 +1273,6 @@
               <p>La utilización de estos servicios no modifica el compromiso de Programix NaveJL respecto al tratamiento responsable de los datos personales.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">5.5</span><span class="section-title">Responsabilidad compartida</span>
@@ -1196,7 +1288,6 @@
               </ul>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">5.6</span><span class="section-title">Gestión de incidentes</span>
@@ -1206,7 +1297,6 @@
               <p>En caso de detectarse incidentes que puedan comprometer la seguridad de la información, Programix NaveJL adoptará medidas razonables para contener, investigar y mitigar sus efectos. Cuando la naturaleza del incidente lo justifique y la legislación lo requiera, los usuarios podrán ser informados mediante los canales oficiales.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">5.7</span><span class="section-title">Mejora continua de la seguridad</span>
@@ -1216,7 +1306,6 @@
               <p>La seguridad de la app Comunidad ITVH es objeto de revisión y mejora continua. Programix NaveJL podrá actualizar sus procedimientos, implementar nuevas medidas de protección y adoptar tecnologías orientadas a fortalecer la seguridad, respondiendo a la evolución de los riesgos y las buenas prácticas en la materia.</p>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -1232,7 +1321,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">6.1</span><span class="section-title">Objetivo</span>
@@ -1242,7 +1330,6 @@
               <p>El presente módulo informa a los usuarios sobre las circunstancias en las que Programix NaveJL podrá compartir, comunicar o divulgar datos personales recopilados a través de la app Comunidad ITVH.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">6.2</span><span class="section-title">Compromiso de confidencialidad</span>
@@ -1259,7 +1346,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">6.3</span><span class="section-title">Supuestos en los que se podrá compartir información</span>
@@ -1276,7 +1362,6 @@
               <p style="margin-top:0.5rem;">En todos los casos, la información compartida se limitará a lo estrictamente necesario.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">6.4</span><span class="section-title">Servicios tecnológicos</span>
@@ -1287,7 +1372,6 @@
               <p>Actualmente, la app utiliza <strong>Supabase</strong> como parte de su infraestructura tecnológica para la autenticación y gestión segura de la información.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">6.5</span><span class="section-title">Información visible dentro de la Plataforma</span>
@@ -1306,7 +1390,6 @@
               </div>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">6.6 – 6.7</span><span class="section-title">Protección y minimización en la compartición</span>
@@ -1320,7 +1403,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -1336,7 +1418,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">7.1</span><span class="section-title">Objetivo</span>
@@ -1346,7 +1427,6 @@
               <p>El presente módulo informa a los usuarios sobre los derechos que pueden ejercer respecto de sus datos personales, así como los mecanismos disponibles para su ejercicio. Programix NaveJL reconoce que los datos personales pertenecen a sus titulares y se compromete a facilitar el ejercicio de los derechos aplicables.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">7.2</span><span class="section-title">Derecho de acceso</span>
@@ -1356,7 +1436,6 @@
               <p>Los usuarios podrán conocer la información personal que hayan proporcionado a la app Comunidad ITVH y que sea tratada por Programix NaveJL como parte del funcionamiento de la Plataforma.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">7.3</span><span class="section-title">Derecho de actualización y rectificación</span>
@@ -1366,7 +1445,6 @@
               <p>Los usuarios podrán actualizar, corregir o modificar los datos personales de su perfil cuando las funcionalidades de la app así lo permitan. En aquellos casos en que la actualización no pueda realizarse directamente desde la Plataforma, el usuario podrá solicitar asistencia a través de los medios oficiales de contacto.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">7.4</span><span class="section-title">Derecho a la eliminación de la cuenta</span>
@@ -1376,18 +1454,16 @@
               <p>Los usuarios podrán solicitar la eliminación de su cuenta mediante la funcionalidad habilitada dentro de la app. Una vez iniciado el procedimiento, Programix NaveJL gestionará la eliminación de la información conforme a los criterios del <strong>Módulo 4</strong>, sin perjuicio de aquellos datos cuya conservación resulte necesaria por obligaciones legales o de seguridad.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">7.5 – 7.6</span><span class="section-title">Derecho a la privacidad y a realizar consultas</span>
               <svg class="s-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
             <div class="section-body">
-              <p>Los usuarios tienen derecho a que sus datos sean tratados con confidencialidad y únicamente para las finalidades descritas en esta Política. Programix NaveJL no utilizará la información para fines incompatibles con aquellos para los cuales fue recopilada.</p>
+              <p>Los usuarios tienen derecho a que sus datos sean tratados con confidencialidad y únicamente para las finalidades descritas en esta Política.</p>
               <p>Los usuarios podrán presentar consultas relacionadas con el tratamiento de sus datos personales o el contenido de esta Política. Programix NaveJL procurará atenderlas en un plazo razonable mediante los canales oficiales.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">7.7</span><span class="section-title">Ejercicio responsable de los derechos</span>
@@ -1397,7 +1473,6 @@
               <p>El ejercicio de los derechos previstos en este módulo deberá realizarse de buena fe y conforme a los procedimientos establecidos. Cuando resulte necesario para proteger la seguridad de la Plataforma o los derechos de otros usuarios, Programix NaveJL podrá solicitar información adicional para verificar la identidad del solicitante.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">7.8</span><span class="section-title">Compromiso institucional</span>
@@ -1410,7 +1485,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -1426,7 +1500,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">8.1</span><span class="section-title">Objetivo</span>
@@ -1436,7 +1509,6 @@
               <p>El presente módulo informa sobre la posibilidad de que Programix NaveJL actualice la presente Política de Privacidad para mantenerla alineada con la evolución de la app, los avances tecnológicos, modificaciones en la legislación o la incorporación de nuevas funcionalidades.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">8.2</span><span class="section-title">Actualización de la Política</span>
@@ -1447,7 +1519,6 @@
               <p>Toda actualización será realizada procurando mantener la claridad, transparencia y accesibilidad de la información proporcionada.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">8.3</span><span class="section-title">Comunicación de los cambios</span>
@@ -1457,7 +1528,6 @@
               <p>Cuando las modificaciones sean relevantes o afecten significativamente el tratamiento de los datos personales, Programix NaveJL procurará informar a los usuarios mediante los canales oficiales de la app: la propia Plataforma, el sitio web oficial u otros medios adecuados.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">8.4</span><span class="section-title">Entrada en vigor</span>
@@ -1467,7 +1537,6 @@
               <p>Las modificaciones entrarán en vigor en la fecha indicada en la versión actualizada del documento, salvo que se establezca expresamente un plazo distinto. A partir de dicha fecha, el tratamiento de los datos personales se regirá por la versión vigente.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">8.5</span><span class="section-title">Consulta de versiones</span>
@@ -1477,7 +1546,6 @@
               <p>Programix NaveJL podrá mantener disponible la versión vigente de la presente Política y, cuando resulte conveniente, un historial de versiones o cambios relevantes con el propósito de favorecer la transparencia y facilitar la consulta por parte de los usuarios.</p>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -1493,7 +1561,6 @@
           <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="module-body">
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">9.1</span><span class="section-title">Objetivo</span>
@@ -1503,7 +1570,6 @@
               <p>El presente módulo informa a los usuarios sobre los medios oficiales mediante los cuales podrán comunicarse con Programix NaveJL para realizar consultas, solicitar información, ejercer los derechos reconocidos en la presente Política o reportar cualquier situación relacionada con el tratamiento de sus datos personales.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">9.2</span><span class="section-title">Canales oficiales</span>
@@ -1519,7 +1585,6 @@
               </ul>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">9.3</span><span class="section-title">Consultas y solicitudes</span>
@@ -1530,7 +1595,6 @@
               <p>Programix NaveJL procurará atender dichas solicitudes dentro de un plazo razonable, considerando la naturaleza y complejidad de cada caso.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">9.4</span><span class="section-title">Comunicaciones oficiales</span>
@@ -1540,7 +1604,6 @@
               <p>Toda comunicación relacionada con la presente Política será emitida exclusivamente a través de los medios oficiales de Programix NaveJL. Se recomienda a los usuarios verificar que cualquier comunicación relacionada con la app provenga de sus canales oficiales para evitar intentos de suplantación de identidad.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">9.5</span><span class="section-title">Compromiso con la transparencia</span>
@@ -1550,7 +1613,6 @@
               <p>Programix NaveJL mantiene el compromiso de brindar información clara, accesible y oportuna respecto al tratamiento de los datos personales. Las consultas relacionadas con la privacidad serán atendidas con respeto, confidencialidad e imparcialidad.</p>
             </div>
           </div>
-
           <div class="section-item">
             <button class="section-header" onclick="toggleSection(this)">
               <span class="section-num">9.6</span><span class="section-title">Disposición final</span>
@@ -1561,13 +1623,12 @@
               <p>Programix NaveJL reafirma su compromiso de desarrollar y mantener una plataforma fundamentada en la <strong>confianza, la transparencia, la seguridad y el respeto por la privacidad</strong> de la comunidad estudiantil.</p>
             </div>
           </div>
-
         </div>
       </div>
 
     </div><!-- /modules-container -->
 
-    <!-- ══ DISPOSICIÓN FINAL ══ -->
+    <!-- DISPOSICIÓN FINAL -->
     <div class="final-card">
       <div class="final-brand">
         <img src="imagenes/logo_comunidad_itvh.png" alt="Comunidad ITVH" class="final-brand-logo">
@@ -1576,10 +1637,8 @@
           <p>Política de Privacidad oficial — Comunidad ITVH</p>
         </div>
       </div>
-
       <div class="final-body">
         <p>La presente Política de Privacidad ha sido elaborada con el propósito de informar a los usuarios sobre el tratamiento de sus datos personales y se encuentra protegida por la legislación aplicable en materia de propiedad intelectual. Su contenido constituye un documento oficial de <strong>Programix NaveJL</strong> para la plataforma Comunidad ITVH.</p>
-
         <div class="contact-grid">
           <div class="contact-item">
             <div class="c-label">Documento</div>
@@ -1614,9 +1673,7 @@
             <div class="c-val">Por definir</div>
           </div>
         </div>
-
         <div class="final-divider"></div>
-
         <div class="copyright">
           <span>© 2026 Programix NaveJL. Todos los derechos reservados.</span>
           <img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" class="copyright-logo">
@@ -1636,13 +1693,12 @@
   const modules  = document.querySelectorAll('.module-card');
   const navItems = document.querySelectorAll('.nav-item');
 
-  /* ── MÓDULOS ── */
   function toggleModule(idx) {
     modules[idx].classList.toggle('open');
   }
 
   function toggleSection(btn) {
-    const body  = btn.nextElementSibling;
+    const body   = btn.nextElementSibling;
     const isOpen = btn.classList.contains('s-open');
     btn.classList.toggle('s-open', !isOpen);
     body.classList.toggle('visible', !isOpen);
@@ -1667,7 +1723,6 @@
     window.open('docs/Comunidad ITVH - Politica de privacidad.pdf', '_blank');
   }
 
-  /* ── SCROLL: sidebar activo + botón subir ── */
   window.addEventListener('scroll', () => {
     document.getElementById('scroll-top').classList.toggle('show', window.scrollY > 400);
     let current = 0;
@@ -1676,7 +1731,6 @@
     navItems[current].classList.add('active');
   });
 
-  /* Abre el primer módulo por defecto */
   modules[0].classList.add('open');
 </script>
 </body>
