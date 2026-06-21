@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comunidad ITVH — La App Oficial de la Comunidad Estudiantil del TecNM Villahermosa</title>
+<meta name="description" content="Comunidad ITVH es la plataforma social oficial para estudiantes del Instituto Tecnológico de Villahermosa: Comunidad Tecnológica, Marketplace, Jaguar Chat y UbicaTecNM, todo en una sola app. Desarrollada por Programix NaveJL.">
+<meta property="og:title" content="Comunidad ITVH — La app de la comunidad estudiantil del TecNM Villahermosa">
+<meta property="og:description" content="Una sola app que une a toda la comunidad estudiantil del ITVH: comunidad tecnológica, marketplace, mensajería y mapa del campus.">
+<meta property="og:image" content="imagenes/emuladores_app.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="imagenes/favicon.png">
+<link rel="apple-touch-icon" href="imagenes/logo_comunidad_itvh.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FAF8F2;
+    --bg-secondary: #F1EDE2;
+    --bg-tertiary: #E9E2D2;
+    --text-primary: #1E2A22;
+    --text-secondary: #5B6B5F;
+    --text-muted: #97A294;
+    --border: #DED7C4;
+    --border-hover: #C9C0A8;
+    --accent: #2E6E4E;
+    --accent-light: #E4EFE6;
+    --accent-dark: #1D4A33;
+    --gold: #B5832A;
+    --gold-light: #F4E7CE;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --note-bg: #F0F4FF;
+    --note-border: #5B7FD4;
+    --note-text: #1E3A7B;
+    --tag-bg: rgba(30,42,34,0.06);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+    min-height: 100vh;
+  }
+
+  h1, h2, .brand-name, .block-title, .module-title, .final-brand-text h2, .hero-meta, .module-num {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  }
+
+  a { color: inherit; }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .topbar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); min-width: 0; }
+  .brand-logo { height: 36px; width: auto; object-fit: contain; flex-shrink: 0; }
+  .brand-divider { width: 1px; height: 28px; background: var(--border); flex-shrink: 0; }
+  .brand-text { display: flex; flex-direction: column; min-width: 0; }
+  .brand-name { font-size: 13px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.2; white-space: nowrap; }
+  .brand-sub  { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 1px; white-space: nowrap; }
+
+  .topbar-right { display: flex; align-items: center; gap: 8px; position: relative; }
+
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; white-space: nowrap; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 6px 8px;
+    cursor: pointer;
+    color: var(--text-primary);
+  }
+  .mobile-menu-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; display: block; }
+
+  /* ── CONTAINER ── */
+  .page-container { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.5rem 1.5rem; }
+
+  /* HERO */
+  .hero {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .hero-band {
+    height: 56px;
+    background-color: var(--accent-dark);
+    background-image:
+      radial-gradient(circle at 10px 12px, rgba(255,255,255,0.16) 0 3px, transparent 3.5px),
+      radial-gradient(circle at 34px 30px, rgba(255,255,255,0.11) 0 2.5px, transparent 3px),
+      radial-gradient(circle at 58px 10px, rgba(255,255,255,0.13) 0 2px, transparent 2.5px),
+      radial-gradient(circle at 80px 34px, rgba(255,255,255,0.10) 0 2.5px, transparent 3px);
+    background-size: 96px 48px;
+  }
+  .hero-body { padding: 0 2rem 2rem; text-align: center; }
+  .hero-logo {
+    width: 88px; height: 88px;
+    object-fit: contain;
+    border-radius: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 8px;
+    margin-top: -44px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  }
+  .hero h1 { font-size: 1.9rem; font-weight: 600; letter-spacing: -0.5px; margin: 18px auto 10px; max-width: 620px; }
+  .hero p  { font-size: 15px; color: var(--text-secondary); line-height: 1.65; max-width: 540px; margin: 0 auto; }
+
+  .hero-actions { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 12px 26px; border-radius: var(--radius);
+    font-weight: 600; font-size: 14px;
+    text-decoration: none; display: inline-block;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:active { transform: scale(0.97); }
+
+  .badge-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    background: var(--gold-light); color: var(--gold);
+    padding: 7px 14px; border-radius: 20px;
+  }
+
+  .hero-meta {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px;
+    margin-top: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+  }
+  .meta-tag { display: inline-flex; align-items: baseline; gap: 5px; }
+  .meta-tag .meta-label { font-size: 9.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  .meta-divider { width: 1px; height: 13px; background: var(--border); }
+
+  /* INTRO CARD */
+  .intro-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+  .intro-card p { margin-bottom: 0.75rem; }
+  .intro-card p:last-child { margin-bottom: 0; }
+  .intro-card strong { color: var(--text-primary); font-weight: 600; }
+
+  /* SECTION HEADERS */
+  .section-block { margin: 2.5rem 0 1.5rem; scroll-margin-top: 84px; }
+  .block-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 6px; display: block; text-align: center;
+  }
+  .block-title { font-size: 1.5rem; font-weight: 600; text-align: center; margin-bottom: 0.4rem; }
+  .block-subtitle { font-size: 13.5px; color: var(--text-muted); text-align: center; margin-bottom: 1.5rem; }
+
+  /* SHOWCASE */
+  .showcase {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    display: flex; justify-content: center;
+  }
+  .showcase img { max-width: 100%; height: auto; }
+
+  /* MODULE CARD (funcionalidades) */
+  .module-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .module-card:hover { border-color: var(--border-hover); }
+  .module-card.open  { border-color: var(--accent); }
+
+  .module-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer; user-select: none;
+    background: none; border: none;
+    width: 100%; text-align: left;
+    color: var(--text-primary);
+    transition: background 0.1s;
+  }
+  .module-header:hover { background: var(--bg-secondary); }
+  .module-card.open .module-header { background: var(--bg-secondary); }
+
+  .module-num {
+    width: 38px; height: 38px;
+    background: var(--bg-tertiary);
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .module-card.open .module-num { background: var(--accent-light); }
+
+  .module-title-wrap { flex: 1; min-width: 0; }
+  .module-title    { font-size: 15.5px; font-weight: 600; letter-spacing: -0.2px; }
+  .module-subtitle { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+
+  .chevron {
+    width: 18px; height: 18px; flex-shrink: 0;
+    fill: none; stroke: var(--text-muted);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    transition: transform 0.2s;
+  }
+  .module-card.open .chevron { transform: rotate(180deg); }
+
+  .module-body { display: none; border-top: 1px solid var(--border); padding: 1.1rem 1.5rem 1.4rem calc(1.5rem + 52px); }
+  .module-card.open .module-body { display: block; }
+  .module-body p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 0.75rem; }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tag { font-size: 12px; padding: 3px 10px; border-radius: var(--radius); background: var(--tag-bg); color: var(--text-secondary); }
+
+  /* PRINCIPLES / CAMPUS GRID */
+  .principles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .principle-item { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .principle-icon { font-size: 18px; margin-bottom: 6px; }
+  .principle-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
+  .principle-desc  { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  /* NOTE / INFO */
+  .note-block {
+    border-left: 3px solid var(--note-border);
+    background: var(--note-bg);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px; margin-top: 1.5rem;
+    font-size: 13px;
+  }
+  .note-block .p-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--note-text); margin-bottom: 6px; }
+  .note-block p { color: var(--note-text); font-size: 13px; line-height: 1.7; }
+
+  .info-bar {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-size: 13px; color: var(--text-secondary);
+    margin-top: 1.5rem;
+  }
+  .info-bar strong { color: var(--text-primary); font-weight: 600; }
+
+  /* LEGAL LINKS */
+  .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .legal-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 16px 18px; text-decoration: none; display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .legal-item:hover { border-color: var(--accent); background: var(--accent-light); }
+  .legal-icon { font-size: 20px; flex-shrink: 0; }
+  .legal-name { font-size: 13.5px; font-weight: 600; color: var(--text-primary); }
+  .legal-desc { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; }
+
+  /* FINAL CARD */
+  .final-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-top: 1rem; overflow: hidden; }
+  .final-brand { display: flex; align-items: center; gap: 14px; padding: 1.25rem 2rem; border-bottom: 1px solid var(--border); background: var(--bg-secondary); }
+  .final-brand-logo { height: 48px; width: auto; object-fit: contain; flex-shrink: 0; }
+  .final-brand-text h2 { font-size: 16px; font-weight: 600; }
+  .final-brand-text p  { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+  .final-body { padding: 1.5rem 2rem; }
+  .final-body > p { font-size: 13.5px; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1rem; }
+  .contact-item { background: var(--bg-secondary); border-radius: var(--radius); padding: 12px 14px; border: 1px solid var(--border); }
+  .contact-item .c-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 4px; }
+  .contact-item .c-val   { font-size: 13px; color: var(--text-primary); word-break: break-word; }
+  .contact-item .c-val a { color: var(--accent); text-decoration: none; }
+  .contact-item .c-val a:hover { text-decoration: underline; }
+  .final-divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+  .copyright { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 12px; color: var(--text-muted); }
+  .copyright-logo { height: 22px; width: auto; object-fit: contain; opacity: 0.6; transition: opacity 0.15s; }
+  .copyright-logo:hover { opacity: 1; }
+
+  /* SCROLL TOP */
+  .scroll-top {
+    position: fixed; bottom: 2rem; right: 2rem;
+    width: 40px; height: 40px;
+    background: var(--accent); border: none; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 50;
+  }
+  .scroll-top.show { opacity: 1; pointer-events: auto; }
+  .scroll-top:hover { transform: translateY(-2px); }
+  .scroll-top svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* FOCUS VISIBLE */
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .topbar { padding: 0 1rem; height: 56px; }
+    .brand-sub { display: none; }
+    .brand-logo { height: 28px; }
+    .mobile-menu-btn { display: flex; }
+    .nav-links {
+      position: absolute; top: 56px; left: 0; right: 0;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      flex-direction: column; align-items: flex-start;
+      padding: 1rem 1.25rem; gap: 14px;
+      display: none;
+    }
+    .nav-links.open { display: flex; }
+
+    .page-container { padding: 1.5rem 1rem 1rem; }
+    .hero-band { height: 44px; }
+    .hero-body { padding: 0 1.25rem 1.5rem; }
+    .hero h1 { font-size: 1.4rem; }
+    .hero p  { font-size: 13.5px; }
+    .module-header { padding: 1rem 1.25rem; gap: 10px; }
+    .module-body { padding: 1rem 1.25rem 1.2rem calc(1.25rem + 50px); }
+    .principles-grid, .legal-grid, .contact-grid { grid-template-columns: 1fr; }
+    .final-brand { padding: 1rem 1.25rem; }
+    .final-body { padding: 1.25rem; }
+    .scroll-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; }
+  }
+
+  @media (max-width: 380px) {
+    .brand-name { font-size: 12px; }
+    .hero h1 { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ TOP BAR ══ -->
+<header class="topbar">
+  <a href="#" class="topbar-brand">
+    <img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" class="brand-logo">
+    <div class="brand-divider"></div>
+    <div class="brand-text">
+      <span class="brand-name">Comunidad ITVH</span>
+      <span class="brand-sub">Sitio oficial de la app</span>
+    </div>
+  </a>
+
+  <div class="topbar-right">
+    <nav class="nav-links" id="navLinks">
+      <a href="#funciones" onclick="closeNav()">Funciones</a>
+      <a href="#capturas" onclick="closeNav()">Capturas</a>
+      <a href="#campus" onclick="closeNav()">Campus</a>
+      <a href="#legal" onclick="closeNav()">Legal</a>
+      <a href="https://programix-navejl.github.io/programix-navejl/" target="_blank" rel="noopener noreferrer">Programix NaveJL</a>
+    </nav>
+    <button class="mobile-menu-btn" onclick="toggleNav()" aria-label="Menú">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="page-container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-band" aria-hidden="true"></div>
+    <div class="hero-body">
+      <img src="imagenes/logo_comunidad_itvh.png" alt="Comunidad ITVH" class="hero-logo">
+      <h1>La red social oficial de la comunidad estudiantil del TecNM Villahermosa</h1>
+      <p>Comunidad Tecnológica, Marketplace, Jaguar Chat y UbicaTecNM, todo en una sola app pensada exclusivamente para estudiantes activos del Instituto Tecnológico de Villahermosa.</p>
+
+      <div class="hero-actions">
+        <a href="#funciones" class="btn-primary">Conoce las funciones</a>
+        <span class="badge-status">🚧 En desarrollo</span>
+      </div>
+
+      <div class="hero-meta">
+        <span class="meta-tag"><span class="meta-label">Plataforma</span> Comunidad ITVH</span>
+        <span class="meta-divider"></span>
+        <span class="meta-tag"><span class="meta-label">Acceso</span> Exclusivo ITVH</span>
+        <span class="meta-divider"></span>
+        <span class="meta-tag"><span class="meta-label">Desarrollado por</span> Programix NaveJL</span>
+        <span class="meta-divider"></span>
+        <span class="meta-tag"><span class="meta-label">©</span> 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <p><strong>Comunidad ITVH</strong> es la super-app que une a toda la comunidad estudiantil del Instituto Tecnológico de Villahermosa en un solo lugar: red social, mensajería, mapa del campus y un espacio para el emprendimiento estudiantil.</p>
+    <p>El registro está reservado exclusivamente a estudiantes activos del ITVH mediante correo electrónico institucional, lo que mantiene a la comunidad cerrada, segura y verificada.</p>
+  </div>
+
+  <!-- ══ CAPTURAS ══ -->
+  <section class="section-block" id="capturas">
+    <span class="block-eyebrow">Vista previa</span>
+    <h2 class="block-title">Así se ve por dentro</h2>
+    <p class="block-subtitle">Comunidad Tecnológica, pantalla de bienvenida e inicio de sesión</p>
+    <div class="showcase">
+      <img src="imagenes/emuladores_app.png" alt="Capturas de la app Comunidad ITVH: feed de Comunidad Tecnológica, pantalla de bienvenida e inicio de sesión">
+    </div>
+  </section>
+
+  <!-- ══ FUNCIONALIDADES ══ -->
+  <section class="section-block" id="funciones">
+    <span class="block-eyebrow">Funciones</span>
+    <h2 class="block-title">Cinco espacios, una sola app</h2>
+    <p class="block-subtitle">Todo lo que necesitas dentro del campus</p>
+
+    <div id="modules-container">
+
+      <div class="module-card open" id="module-0">
+        <button class="module-header" onclick="toggleModule(0)">
+          <div class="module-num">📸</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Comunidad Tecnológica</div>
+            <div class="module-subtitle">El feed principal de la app</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <p>El espacio donde los estudiantes comparten publicaciones, historias y todo lo que pasa en el plantel: actividades académicas, eventos, proyectos e investigación.</p>
+          <div class="tag-list">
+            <span class="tag">Publicaciones</span>
+            <span class="tag">Historias</span>
+            <span class="tag">Reacciones</span>
+            <span class="tag">Comentarios</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card" id="module-1">
+        <button class="module-header" onclick="toggleModule(1)">
+          <div class="module-num">👤</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Mi Perfil</div>
+            <div class="module-subtitle">Tu identidad dentro de la comunidad</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <p>Foto de perfil, nombre, carrera, semestre y todas tus publicaciones en un solo lugar. El acceso exclusivo mediante correo institucional garantiza que solo estudiantes del ITVH formen parte de la comunidad.</p>
+          <div class="tag-list">
+            <span class="tag">Historias destacadas</span>
+            <span class="tag">Carrera y semestre</span>
+            <span class="tag">Publicaciones propias</span>
+            <span class="tag">Acceso institucional</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card" id="module-2">
+        <button class="module-header" onclick="toggleModule(2)">
+          <div class="module-num">🛍️</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Marketplace</div>
+            <div class="module-subtitle">El espacio del emprendimiento estudiantil</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <p>Un espacio donde los emprendedores del Tecnológico anuncian sus productos y servicios al resto de la comunidad estudiantil.</p>
+          <div class="tag-list">
+            <span class="tag">Productos y servicios</span>
+            <span class="tag">Emprendedores verificados</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card" id="module-3">
+        <button class="module-header" onclick="toggleModule(3)">
+          <div class="module-num">💬</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Jaguar Chat</div>
+            <div class="module-subtitle">Mensajería privada entre estudiantes</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <p>Un sistema de mensajería al estilo de las apps que ya conoces, pensado para coordinar actividades académicas y comunicarse con otros estudiantes. Incluye dos apartados adicionales muy útiles dentro del campus.</p>
+          <div class="tag-list">
+            <span class="tag">Mensajería directa</span>
+            <span class="tag">Referencias de Maestros</span>
+            <span class="tag">Objetos Perdidos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card" id="module-4">
+        <button class="module-header" onclick="toggleModule(4)">
+          <div class="module-num">🗺️</div>
+          <div class="module-title-wrap">
+            <div class="module-title">UbicaTecNM Campus Villahermosa</div>
+            <div class="module-subtitle">El mapa interactivo del campus</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <p>Busca cualquier edificio o lugar del campus y encuéntralo al instante con marcadores de ubicación directamente en el mapa.</p>
+          <div class="tag-list">
+            <span class="tag">Búsqueda de edificios</span>
+            <span class="tag">Marcadores de ubicación</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ CAMPUS ══ -->
+  <section class="section-block" id="campus">
+    <span class="block-eyebrow">Más allá de la red social</span>
+    <h2 class="block-title">Todo el IVTH, en tu bolsillo</h2>
+    <p class="block-subtitle">Un menú dedicado con información institucional del campus</p>
+
+    <div class="principles-grid">
+      <div class="principle-item">
+        <div class="principle-icon">📍</div>
+        <div class="principle-title">Ubicación</div>
+        <div class="principle-desc">Ubica edificios del TecNM Villahermosa.</div>
+      </div>
+      <div class="principle-item">
+        <div class="principle-icon">📖</div>
+        <div class="principle-title">Historia</div>
+        <div class="principle-desc">La historia institucional del Tecnológico.</div>
+      </div>
+      <div class="principle-item">
+        <div class="principle-icon">🎓</div>
+        <div class="principle-title">Planes de estudio</div>
+        <div class="principle-desc">Retículas de las 12 carreras que ofrece el TecNM Villahermosa.</div>
+      </div>
+      <div class="principle-item">
+        <div class="principle-icon">🔗</div>
+        <div class="principle-title">SIE y SWS</div>
+        <div class="principle-desc">Accesos directos a las plataformas digitales del Tecnológico.</div>
+      </div>
+    </div>
+
+    <div class="note-block">
+      <div class="p-label">Acceso exclusivo</div>
+      <p>Comunidad ITVH está diseñada exclusivamente para estudiantes activos del Instituto Tecnológico de Villahermosa. El registro requiere un correo electrónico institucional válido.</p>
+    </div>
+
+    <div class="info-bar">
+      <strong>🚧 En desarrollo.</strong> Actualmente estamos construyendo Comunidad ITVH. Síguenos en los canales oficiales de Programix NaveJL para enterarte del lanzamiento.
+    </div>
+  </section>
+
+  <!-- ══ LEGAL ══ -->
+  <section class="section-block" id="legal">
+    <span class="block-eyebrow">Documentos oficiales</span>
+    <h2 class="block-title">Legal</h2>
+    <p class="block-subtitle">Términos y privacidad de la plataforma</p>
+
+    <div class="legal-grid">
+      <a class="legal-item" href="https://programix-navejl.github.io/comunidad-itvh/terminos.html">
+        <span class="legal-icon">📄</span>
+        <div>
+          <div class="legal-name">Términos y Condiciones</div>
+          <div class="legal-desc">Reglas de uso de la plataforma</div>
+        </div>
+      </a>
+      <a class="legal-item" href="https://programix-navejl.github.io/comunidad-itvh/politica.html">
+        <span class="legal-icon">🔒</span>
+        <div>
+          <div class="legal-name">Política de Privacidad</div>
+          <div class="legal-desc">Cómo tratamos tus datos</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="final-card">
+    <div class="final-brand">
+      <img src="imagenes/logo_comunidad_itvh.png" alt="Comunidad ITVH" class="final-brand-logo">
+      <div class="final-brand-text">
+        <h2>Comunidad ITVH</h2>
+        <p>Sitio oficial de la app — Programix NaveJL</p>
+      </div>
+    </div>
+    <div class="final-body">
+      <p>Comunidad ITVH es desarrollada por <strong>Programix NaveJL</strong> para la comunidad estudiantil del Instituto Tecnológico de Villahermosa. Este sitio se mantendrá actualizado conforme avance el desarrollo de la app.</p>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="c-label">Plataforma</div>
+          <div class="c-val">Comunidad ITVH</div>
+        </div>
+        <div class="contact-item">
+          <div class="c-label">Estado</div>
+          <div class="c-val">En desarrollo</div>
+        </div>
+        <div class="contact-item">
+          <div class="c-label">Desarrollado por</div>
+          <div class="c-val">Programix NaveJL</div>
+        </div>
+        <div class="contact-item">
+          <div class="c-label">Soporte / Desarrollador</div>
+          <div class="c-val"><a href="https://programix-navejl.github.io/programix-navejl/" target="_blank" rel="noopener noreferrer">programix-navejl.github.io</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-label">Correo de contacto</div>
+          <div class="c-val"><a href="mailto:alfredo.naveju.lop@gmail.com">alfredo.naveju.lop@gmail.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-label">Términos y Condiciones</div>
+          <div class="c-val"><a href="https://programix-navejl.github.io/comunidad-itvh/terminos.html">Ver documento</a></div>
+        </div>
+      </div>
+
+      <div class="final-divider"></div>
+
+      <div class="copyright">
+        <span>© 2026 Programix NaveJL. Todos los derechos reservados.</span>
+        <img src="imagenes/logo_programix_navejl.png" alt="Programix NaveJL" class="copyright-logo">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Ir al inicio">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+  const modules = document.querySelectorAll('.module-card');
+
+  function toggleModule(idx) {
+    modules[idx].classList.toggle('open');
+  }
+
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('scroll-top').classList.toggle('show', window.scrollY > 400);
+  });
+</script>
+</body>
+</html>
